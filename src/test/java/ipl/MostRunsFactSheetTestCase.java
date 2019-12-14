@@ -82,7 +82,7 @@ public class MostRunsFactSheetTestCase {
             iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
             String sortedIplData = iplAnalyser.getBattingAverageSortedData(FeatureEnum.BATING_AVERAGE);
             IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
-            Assert.assertEquals("Shakib Al Hasan", iplCSV[iplCSV.length-1].playerName);
+            Assert.assertEquals("MS Dhoni", iplCSV[iplCSV.length - 1].playerName);
         } catch (IplAnalyserException e) {
         }
     }
