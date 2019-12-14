@@ -1,5 +1,6 @@
 package ipl;
 
+import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -51,6 +52,7 @@ public class MostRunsFactSheetTestCase {
             Assert.assertEquals(IplAnalyserException.ExceptionType.HEADER_CAPTURING_ISSUE, e.type);
         }
     }
+
     @Test
     public void givenMostRunsFactSheet_ButWithFileWithoutReadWritePermission_ShouldThrowException() {
         try {
@@ -60,4 +62,29 @@ public class MostRunsFactSheetTestCase {
             Assert.assertEquals(IplAnalyserException.ExceptionType.CSV_FILE_PROBLEM, e.type);
         }
     }
+
+    @Test
+    public void givenFactSheetOFMostRuns_WithSortedOnBattingAverage_ShouldReturnPlayerWithLowestBattingAverage() {
+        try {
+            IplAnalyser iplAnalyser = new IplAnalyser();
+            iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
+            String sortedIplData = iplAnalyser.getBattingAverageSortedData(FeatureEnum.BATING_AVERAGE);
+            IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
+            Assert.assertEquals("Ishant Sharma", iplCSV[0].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
+
+    @Test
+    public void givenFactSheetOFMostRuns_WithSortedOnBattingAverage_ShouldReturnPlayerWithHighestBattingAverage() {
+        try {
+            IplAnalyser iplAnalyser = new IplAnalyser();
+            iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
+            String sortedIplData = iplAnalyser.getBattingAverageSortedData(FeatureEnum.BATING_AVERAGE);
+            IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
+            Assert.assertEquals("Shakib Al Hasan", iplCSV[iplCSV.length-1].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
+
 }

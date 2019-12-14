@@ -1,8 +1,6 @@
 package ipl;
 
-import censusanalyser.CensusAnalyserException;
-import censusanalyser.IndiaCensusCSV;
-import censusanalyser.IndiaStateCodeCSV;
+import com.google.gson.Gson;
 import csvbuilder.CSVBuilderException;
 import csvbuilder.CSVBuilderFactory;
 import csvbuilder.ICSVBuilder;
@@ -11,16 +9,19 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.StreamSupport;
+
+import static java.util.stream.Collectors.toCollection;
 
 public class IplAnalyser {
     Map<String, IplMostRunsCSV> iplMap = null;
+    Map<FeatureEnum, Comparator<IplMostRunsCSV>> featureComparator=null;
 
     public IplAnalyser() {
         this.iplMap = new HashMap<>();
+        this.featureComparator=new HashMap<>();
+        featureComparator.put(FeatureEnum.BATING_AVERAGE,Comparator.comparing(ipl->ipl.average));
     }
 
     public long loadMostRunsFactSheet(String csvFilePath) throws IplAnalyserException {
@@ -28,8 +29,10 @@ public class IplAnalyser {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             Iterator<IplMostRunsCSV> csvFileIterator = csvBuilder.getCSVFileIterator(reader, IplMostRunsCSV.class);
             Iterable<IplMostRunsCSV> csvIterable = () -> csvFileIterator;
-
-            return StreamSupport.stream(csvIterable.spliterator(), false).count();
+            StreamSupport.stream(csvIterable.spliterator(), false)
+                    .map(IplMostRunsCSV.class::cast)
+                    .forEach(iplCSV -> iplMap.put(iplCSV.playerName, new IplMostRunsCSV(iplCSV)));
+            return iplMap.size();
         } catch (IOException | CSVBuilderException e) {
             throw new IplAnalyserException(e.getMessage(),
                     IplAnalyserException.ExceptionType.CSV_FILE_PROBLEM);
@@ -37,5 +40,16 @@ public class IplAnalyser {
             throw new IplAnalyserException("Error capturing CSV header!",
                     IplAnalyserException.ExceptionType.HEADER_CAPTURING_ISSUE);
         }
+    }
+    public String getBattingAverageSortedData(FeatureEnum field) throws IplAnalyserException {
+        if (iplMap == null || iplMap.size() == 0) {
+            throw new IplAnalyserException("no ipl data",
+                    IplAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        ArrayList iplList = iplMap.values().stream()
+                .sorted(this.featureComparator.get(field))
+                .collect(toCollection(ArrayList::new));
+        String sortedIplJson = new Gson().toJson(iplList);
+        return sortedIplJson;
     }
 }

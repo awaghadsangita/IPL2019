@@ -8,15 +8,15 @@ public class IplMostRunsCSV {
     @CsvBindByName(column = "Mat")
     public String match;
     @CsvBindByName(column = "Avg")
-    public String average;
+    public int average;
     @CsvBindByName(column = "100")
-    public String century;
+    public int century;
     @CsvBindByName(column = "50")
-    public String halfCentury;
+    public int halfCentury;
     @CsvBindByName(column = "4s")
-    public String fours;
+    public int fours;
     @CsvBindByName(column = "6s")
-    public String sixes;
+    public int sixes;
 
     public IplMostRunsCSV(IplMostRunsCSV iplCSV) {
         this.playerName=iplCSV.playerName;
