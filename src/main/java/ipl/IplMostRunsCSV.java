@@ -7,6 +7,8 @@ public class IplMostRunsCSV {
     public String playerName;
     @CsvBindByName(column = "Mat")
     public String match;
+    @CsvBindByName(column = "Avg")
+    public String average;
     @CsvBindByName(column = "100")
     public String century;
     @CsvBindByName(column = "50")
