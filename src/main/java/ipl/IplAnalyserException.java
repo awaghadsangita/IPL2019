@@ -2,7 +2,7 @@ package ipl;
 
 
 public class IplAnalyserException extends Exception {
-    enum ExceptionType {CSV_FILE_PROBLEM};
+    enum ExceptionType {CSV_FILE_PROBLEM,HEADER_CAPTURING_ISSUE};
 
     ExceptionType type;
 

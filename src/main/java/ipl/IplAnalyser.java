@@ -35,6 +35,9 @@ public class IplAnalyser {
         } catch (IOException | CSVBuilderException e) {
             throw new IplAnalyserException(e.getMessage(),
                     IplAnalyserException.ExceptionType.CSV_FILE_PROBLEM);
+        }catch (RuntimeException e){
+            throw new IplAnalyserException("Error capturing CSV header!",
+                    IplAnalyserException.ExceptionType.HEADER_CAPTURING_ISSUE);
         }
     }
 }
