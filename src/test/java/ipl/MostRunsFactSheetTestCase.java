@@ -87,4 +87,28 @@ public class MostRunsFactSheetTestCase {
         }
     }
 
+    @Test
+    public void givenFactSheetOFMostRuns_WithSortedOnStrikingRates_ShouldReturnPlayerWithLowestStrikingRate() {
+        try {
+            IplAnalyser iplAnalyser = new IplAnalyser();
+            iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
+            String sortedIplData = iplAnalyser.getBattingAverageSortedData(FeatureEnum.STRIKING_RATES);
+            IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
+            Assert.assertEquals("Bhuvneshwar Kumar", iplCSV[0].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
+
+    @Test
+    public void givenFactSheetOFMostRuns_WithSortedOnStrikingRates_ShouldReturnPlayerWithHighestStrikingRate() {
+        try {
+            IplAnalyser iplAnalyser = new IplAnalyser();
+            iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
+            String sortedIplData = iplAnalyser.getBattingAverageSortedData(FeatureEnum.STRIKING_RATES);
+            IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
+            Assert.assertEquals("Ishant Sharma", iplCSV[iplCSV.length - 1].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
+
 }
