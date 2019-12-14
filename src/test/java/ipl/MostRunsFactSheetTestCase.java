@@ -14,8 +14,8 @@ public class MostRunsFactSheetTestCase {
     public void givenMostRunsFactSheet_ReturnExactNumberOfPlayers() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
-            int numberOfPlayers = iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
-            Assert.assertEquals(100, numberOfPlayers);
+            long numberOfPlayers = iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
+            Assert.assertEquals(101, numberOfPlayers);
         } catch (IplAnalyserException e) {
         }
     }

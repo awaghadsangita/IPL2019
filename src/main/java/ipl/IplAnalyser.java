@@ -23,15 +23,13 @@ public class IplAnalyser {
         this.iplMap = new HashMap<>();
     }
 
-    public int loadMostRunsFactSheet(String csvFilePath) throws IplAnalyserException {
+    public long loadMostRunsFactSheet(String csvFilePath) throws IplAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             Iterator<IplMostRunsCSV> csvFileIterator = csvBuilder.getCSVFileIterator(reader, IplMostRunsCSV.class);
             Iterable<IplMostRunsCSV> csvIterable = () -> csvFileIterator;
-            StreamSupport.stream(csvIterable.spliterator(), false)
-                    .map(IplMostRunsCSV.class::cast)
-                    .forEach(iplCSV -> iplMap.put(iplCSV.playerName, new IplMostRunsCSV(iplCSV)));
-            return iplMap.size();
+
+            return  StreamSupport.stream(csvIterable.spliterator(), false).count();
         } catch (IOException | CSVBuilderException e) {
             throw new IplAnalyserException(e.getMessage(),
                     IplAnalyserException.ExceptionType.CSV_FILE_PROBLEM);
