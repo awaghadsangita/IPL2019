@@ -92,7 +92,7 @@ public class MostRunsFactSheetTestCase {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
             iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
-            String sortedIplData = iplAnalyser.getBattingAverageSortedData(FeatureEnum.STRIKING_RATES);
+            String sortedIplData = iplAnalyser.getStrikingRatesSortedData(FeatureEnum.STRIKING_RATES);
             IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
             Assert.assertEquals("Bhuvneshwar Kumar", iplCSV[0].playerName);
         } catch (IplAnalyserException e) {
@@ -104,7 +104,7 @@ public class MostRunsFactSheetTestCase {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
             iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
-            String sortedIplData = iplAnalyser.getBattingAverageSortedData(FeatureEnum.STRIKING_RATES);
+            String sortedIplData = iplAnalyser.getStrikingRatesSortedData(FeatureEnum.STRIKING_RATES);
             IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
             Assert.assertEquals("Ishant Sharma", iplCSV[iplCSV.length - 1].playerName);
         } catch (IplAnalyserException e) {
