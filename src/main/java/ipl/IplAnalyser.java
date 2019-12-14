@@ -43,18 +43,7 @@ public class IplAnalyser {
         }
     }
 
-    public String getBattingAverageSortedData(FeatureEnum field) throws IplAnalyserException {
-        if (iplMap == null || iplMap.size() == 0) {
-            throw new IplAnalyserException("no ipl data", IplAnalyserException.ExceptionType.NO_CENSUS_DATA);
-        }
-        ArrayList iplList = iplMap.values().stream()
-                .sorted(this.featureComparator.get(field))
-                .collect(toCollection(ArrayList::new));
-        String sortedIplJson = new Gson().toJson(iplList);
-        return sortedIplJson;
-    }
-
-    public String getStrikingRatesSortedData(FeatureEnum field) throws IplAnalyserException {
+    public String getIplSortedData(FeatureEnum field) throws IplAnalyserException {
         if (iplMap == null || iplMap.size() == 0) {
             throw new IplAnalyserException("no ipl data", IplAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
