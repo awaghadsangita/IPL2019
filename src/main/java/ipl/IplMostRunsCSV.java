@@ -8,26 +8,19 @@ public class IplMostRunsCSV {
     @CsvBindByName(column = "Mat")
     public String match;
     @CsvBindByName(column = "Avg")
-    public int average;
+    public String average;
     @CsvBindByName(column = "100")
-    public int century;
+    public String century;
     @CsvBindByName(column = "50")
-    public int halfCentury;
+    public String halfCentury;
     @CsvBindByName(column = "4s")
-    public int fours;
+    public String fours;
     @CsvBindByName(column = "6s")
-    public int sixes;
-
-    public IplMostRunsCSV(IplMostRunsCSV iplCSV) {
-        this.playerName=iplCSV.playerName;
-        this.match=iplCSV.match;
-        this.average=iplCSV.average;
-        this.century=iplCSV.century;
-        this.halfCentury=iplCSV.halfCentury;
-        this.fours=iplCSV.fours;
-        this.sixes=iplCSV.sixes;
-    }
+    public String sixes;
 
     public IplMostRunsCSV() {
+    }
+
+    public IplMostRunsCSV(IplDAO iplDAO) {
     }
 }

@@ -15,13 +15,13 @@ import java.util.stream.StreamSupport;
 import static java.util.stream.Collectors.toCollection;
 
 public class IplAnalyser {
-    Map<String, IplMostRunsCSV> iplMap = null;
-    Map<FeatureEnum, Comparator<IplMostRunsCSV>> featureComparator=null;
+    Map<String, IplDAO> iplMap = null;
+    Map<FeatureEnum, Comparator<IplDAO>> featureComparator = null;
 
     public IplAnalyser() {
         this.iplMap = new HashMap<>();
-        this.featureComparator=new HashMap<>();
-        featureComparator.put(FeatureEnum.BATING_AVERAGE,Comparator.comparing(ipl->ipl.average));
+        this.featureComparator = new HashMap<>();
+        featureComparator.put(FeatureEnum.BATING_AVERAGE, Comparator.comparing(ipl -> ipl.average));
     }
 
     public long loadMostRunsFactSheet(String csvFilePath) throws IplAnalyserException {
@@ -31,20 +31,20 @@ public class IplAnalyser {
             Iterable<IplMostRunsCSV> csvIterable = () -> csvFileIterator;
             StreamSupport.stream(csvIterable.spliterator(), false)
                     .map(IplMostRunsCSV.class::cast)
-                    .forEach(iplCSV -> iplMap.put(iplCSV.playerName, new IplMostRunsCSV(iplCSV)));
+                    .forEach(iplMostRunsCSV -> iplMap.put(iplMostRunsCSV.playerName, new IplDAO(iplMostRunsCSV)));
             return iplMap.size();
         } catch (IOException | CSVBuilderException e) {
             throw new IplAnalyserException(e.getMessage(),
                     IplAnalyserException.ExceptionType.CSV_FILE_PROBLEM);
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             throw new IplAnalyserException("Error capturing CSV header!",
                     IplAnalyserException.ExceptionType.HEADER_CAPTURING_ISSUE);
         }
     }
+
     public String getBattingAverageSortedData(FeatureEnum field) throws IplAnalyserException {
         if (iplMap == null || iplMap.size() == 0) {
-            throw new IplAnalyserException("no ipl data",
-                    IplAnalyserException.ExceptionType.NO_CENSUS_DATA);
+            throw new IplAnalyserException("no ipl data", IplAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
         ArrayList iplList = iplMap.values().stream()
                 .sorted(this.featureComparator.get(field))
