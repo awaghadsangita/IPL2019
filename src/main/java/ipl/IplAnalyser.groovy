@@ -1,4 +1,0 @@
-package ipl
-
-class IplAnalyser {
-}
