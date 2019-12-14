@@ -29,7 +29,7 @@ public class IplAnalyser {
             Iterator<IplMostRunsCSV> csvFileIterator = csvBuilder.getCSVFileIterator(reader, IplMostRunsCSV.class);
             Iterable<IplMostRunsCSV> csvIterable = () -> csvFileIterator;
 
-            return  StreamSupport.stream(csvIterable.spliterator(), false).count();
+            return StreamSupport.stream(csvIterable.spliterator(), false).count();
         } catch (IOException | CSVBuilderException e) {
             throw new IplAnalyserException(e.getMessage(),
                     IplAnalyserException.ExceptionType.CSV_FILE_PROBLEM);

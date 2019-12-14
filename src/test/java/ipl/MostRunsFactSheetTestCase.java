@@ -9,6 +9,8 @@ public class MostRunsFactSheetTestCase {
     ;
     private static final String INCORRECT_DELIMITER_RUNS_FACTSHEET = "/home/admin1/IdeaProjects/IPL2019/src/test/resources/IncorrectDelimiter_IPL2019FactsheetMostRuns.csv";
     private static final String INCORRECT_HEADERS_RUNS_FACTSHEET = "/home/admin1/IdeaProjects/IPL2019/src/test/resources/IncorrectHeaders_IPL2019FactsheetMostRuns.csv";
+    private static final String IOISSUE_RUNS_FACTSHEET = "/home/admin1/IdeaProjects/IPL2019/src/test/resources/IO_ISSUE_IPL2019FactsheetMostRuns.csv";
+
 
     @Test
     public void givenMostRunsFactSheet_ReturnExactNumberOfPlayers() {
@@ -47,6 +49,15 @@ public class MostRunsFactSheetTestCase {
             iplAnalyser.loadMostRunsFactSheet(INCORRECT_HEADERS_RUNS_FACTSHEET);
         } catch (IplAnalyserException e) {
             Assert.assertEquals(IplAnalyserException.ExceptionType.HEADER_CAPTURING_ISSUE, e.type);
+        }
+    }
+    @Test
+    public void givenMostRunsFactSheet_ButWithFileWithoutReadWritePermission_ShouldThrowException() {
+        try {
+            IplAnalyser iplAnalyser = new IplAnalyser();
+            iplAnalyser.loadMostRunsFactSheet(IOISSUE_RUNS_FACTSHEET);
+        } catch (IplAnalyserException e) {
+            Assert.assertEquals(IplAnalyserException.ExceptionType.CSV_FILE_PROBLEM, e.type);
         }
     }
 }
