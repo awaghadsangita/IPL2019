@@ -19,6 +19,13 @@ public class IplMostRunsCSV {
     public String sixes;
 
     public IplMostRunsCSV(IplMostRunsCSV iplCSV) {
+        this.playerName=iplCSV.playerName;
+        this.match=iplCSV.match;
+        this.average=iplCSV.average;
+        this.century=iplCSV.century;
+        this.halfCentury=iplCSV.halfCentury;
+        this.fours=iplCSV.fours;
+        this.sixes=iplCSV.sixes;
     }
 
     public IplMostRunsCSV() {
