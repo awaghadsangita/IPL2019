@@ -24,7 +24,7 @@ public abstract class IplAdapter {
             Iterable<E> csvIterable = () -> csvFileIterator;
             if (iplCSVClass.getName().equals("ipl.IplMostRunsCSV")) {
                 StreamSupport.stream(csvIterable.spliterator(), false)
-                        .map(IplMostRunsCSV.class::cast)
+                        .map(IplBatsManCSV.class::cast)
                         .forEach(iplMostRunsCSV -> iplMap.put(iplMostRunsCSV.playerName, new IplDAO(iplMostRunsCSV)));
             }
             return iplMap;
