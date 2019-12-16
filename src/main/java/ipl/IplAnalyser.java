@@ -5,6 +5,7 @@ import csvbuilder.CSVBuilderException;
 import csvbuilder.CSVBuilderFactory;
 import csvbuilder.ICSVBuilder;
 import iplcomprator.MaximumSixsAndFoursComparator;
+import iplcomprator.MinimumBallsComparator;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -24,7 +25,7 @@ public class IplAnalyser {
         this.featureComparator = new HashMap<>();
         featureComparator.put(FeatureEnum.BATING_AVERAGE, Comparator.comparing(ipl -> ipl.average));
         featureComparator.put(FeatureEnum.STRIKING_RATES, Comparator.comparing(ipl -> ipl.strikingRate));
-        featureComparator.put(FeatureEnum.MAX_SIXES_AND_FOURS,new MaximumSixsAndFoursComparator());
+        featureComparator.put(FeatureEnum.MAX_SIXES_AND_FOURS,(new MaximumSixsAndFoursComparator().thenComparing(new MinimumBallsComparator())));
     }
 
     public long loadMostRunsFactSheet(String csvFilePath) throws IplAnalyserException {
