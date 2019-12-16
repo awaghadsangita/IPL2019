@@ -8,6 +8,7 @@ public class IplDAO {
     public int match;
     public double average;
     public double strikingRate;
+    public int totalRuns;
     public int century;
     public int halfCentury;
     public int fours;
@@ -23,6 +24,7 @@ public class IplDAO {
             this.average = Double.parseDouble(iplMostRunsCSV.average);
         }
         this.strikingRate = Double.parseDouble(iplMostRunsCSV.strikingRate);
+        this.totalRuns=Integer.parseInt(String.valueOf(iplMostRunsCSV.totalRuns));
         this.century = Integer.parseInt(String.valueOf(iplMostRunsCSV.halfCentury));
         this.halfCentury = Integer.parseInt(String.valueOf(iplMostRunsCSV.halfCentury));
         this.sixes = Integer.parseInt(String.valueOf(iplMostRunsCSV.sixes));
