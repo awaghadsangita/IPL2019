@@ -23,14 +23,16 @@ public class IplAnalyser {
     public IplAnalyser() {
         this.iplMap = new HashMap<>();
         this.featureComparator = new HashMap<>();
-        featureComparator.put(FeatureEnum.BATING_AVERAGE, Comparator.comparing(ipl -> ipl.average));
+        featureComparator.put(FeatureEnum.BATING_AVERAGE,Comparator.comparing(ipl->ipl.average));
         featureComparator.put(FeatureEnum.STRIKING_RATES, Comparator.comparing(ipl -> ipl.strikingRate));
-        Comparator<IplDAO> strikingRateComparator=Comparator.comparing(ipl -> ipl.strikingRate);
-        Comparator<IplDAO> maximumSixesAndFoursComparator=(new MaximumSixsAndFoursComparator().thenComparing(new MinimumBallsComparator()));
-        Comparator<IplDAO> strikingRateWithMaxSixesAndFoursComparator=maximumSixesAndFoursComparator.thenComparing(strikingRateComparator);
-        featureComparator.put(FeatureEnum.STRIKING_RATES,strikingRateWithMaxSixesAndFoursComparator);
-        featureComparator.put(FeatureEnum.MAX_SIXES_AND_FOURS,maximumSixesAndFoursComparator);
-
+        Comparator<IplDAO> strikingRateComparator = Comparator.comparing(ipl -> ipl.strikingRate);
+        Comparator<IplDAO> maximumSixesAndFoursComparator = (new MaximumSixsAndFoursComparator().thenComparing(new MinimumBallsComparator()));
+        Comparator<IplDAO> strikingRateWithMaxSixesAndFoursComparator = maximumSixesAndFoursComparator.thenComparing(strikingRateComparator);
+        Comparator<IplDAO> averageComparator = Comparator.comparing(ipl->ipl.average);
+        Comparator<IplDAO> averageWithStrikingRateComparator=averageComparator.thenComparing(strikingRateComparator);
+        featureComparator.put(FeatureEnum.STRIKING_RATES, strikingRateWithMaxSixesAndFoursComparator);
+        featureComparator.put(FeatureEnum.MAX_SIXES_AND_FOURS, maximumSixesAndFoursComparator);
+        featureComparator.put(FeatureEnum.BEST_AVERAGE_WITH_STRIKING_RATE,averageWithStrikingRateComparator);
     }
 
     public long loadMostRunsFactSheet(String csvFilePath) throws IplAnalyserException {
