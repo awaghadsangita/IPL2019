@@ -25,7 +25,11 @@ public class IplAnalyser {
         this.featureComparator = new HashMap<>();
         featureComparator.put(FeatureEnum.BATING_AVERAGE, Comparator.comparing(ipl -> ipl.average));
         featureComparator.put(FeatureEnum.STRIKING_RATES, Comparator.comparing(ipl -> ipl.strikingRate));
-        featureComparator.put(FeatureEnum.MAX_SIXES_AND_FOURS,(new MaximumSixsAndFoursComparator().thenComparing(new MinimumBallsComparator())));
+        Comparator<IplDAO> strikingRateComparator=Comparator.comparing(ipl -> ipl.strikingRate);
+        Comparator<IplDAO> maximumSixesAndFours=(new MaximumSixsAndFoursComparator().thenComparing(new MinimumBallsComparator()));
+        Comparator<IplDAO> strikingRateWithMaxSixesAndFours=maximumSixesAndFours.thenComparing(strikingRateComparator);
+        featureComparator.put(FeatureEnum.STRIKING_RATES,strikingRateWithMaxSixesAndFours);
+        featureComparator.put(FeatureEnum.MAX_SIXES_AND_FOURS,maximumSixesAndFours);
     }
 
     public long loadMostRunsFactSheet(String csvFilePath) throws IplAnalyserException {

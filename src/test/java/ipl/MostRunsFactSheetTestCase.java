@@ -134,5 +134,27 @@ public class MostRunsFactSheetTestCase {
         } catch (IplAnalyserException e) {
         }
     }
+    @Test
+    public void givenFactSheetOFMostRuns_WithSortedOnMaximumStrikingRate_ShouldReturnPlayerWithLowestStrikingRate() {
+        try {
+            IplAnalyser iplAnalyser = new IplAnalyser();
+            iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
+            String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.STRIKING_RATES);
+            IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
+            Assert.assertEquals("Shakib Al Hasan", iplCSV[0].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
+    @Test
+    public void givenFactSheetOFMostRuns_WithSortedOnMaximumStrikingRate_ShouldReturnPlayerWithHighestStrikingRate() {
+        try {
+            IplAnalyser iplAnalyser = new IplAnalyser();
+            iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
+            String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.STRIKING_RATES);
+            IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
+            Assert.assertEquals("Andre Russell", iplCSV[iplCSV.length-1].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
 
 }
