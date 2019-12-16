@@ -18,8 +18,8 @@ public class MostRunsFactSheetTestCase {
     public void givenMostRunsFactSheet_ReturnExactNumberOfPlayers() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
-            long numberOfPlayers = iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
-            Assert.assertEquals(101, numberOfPlayers);
+            long numberOfPlayers = iplAnalyser.LoadFactSheetCsv(RUNS_FACTSHEET,IplAnalyser.playerTypes.RUNS);
+            Assert.assertEquals(100, numberOfPlayers);
         } catch (IplAnalyserException e) {
         }
     }
@@ -28,7 +28,7 @@ public class MostRunsFactSheetTestCase {
     public void givenMostRunsFactSheet_ButWithWrongFile_ShouldThrowException() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
-            iplAnalyser.loadMostRunsFactSheet(WRONG_RUNS_FACTSHEET);
+            iplAnalyser.LoadFactSheetCsv(WRONG_RUNS_FACTSHEET,IplAnalyser.playerTypes.RUNS);
         } catch (IplAnalyserException e) {
             Assert.assertEquals(IplAnalyserException.ExceptionType.HEADER_CAPTURING_ISSUE, e.type);
         }
@@ -38,7 +38,7 @@ public class MostRunsFactSheetTestCase {
     public void givenMostRunsFactSheet_ButWithFileWithIncorrectDelimiter_ShouldThrowException() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
-            iplAnalyser.loadMostRunsFactSheet(INCORRECT_DELIMITER_RUNS_FACTSHEET);
+            iplAnalyser.LoadFactSheetCsv(INCORRECT_DELIMITER_RUNS_FACTSHEET,IplAnalyser.playerTypes.RUNS);
         } catch (IplAnalyserException e) {
             Assert.assertEquals(IplAnalyserException.ExceptionType.HEADER_CAPTURING_ISSUE, e.type);
         }
@@ -48,7 +48,7 @@ public class MostRunsFactSheetTestCase {
     public void givenMostRunsFactSheet_ButWithFileWithIncorrectHeaders_ShouldThrowException() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
-            iplAnalyser.loadMostRunsFactSheet(INCORRECT_HEADERS_RUNS_FACTSHEET);
+            iplAnalyser.LoadFactSheetCsv(INCORRECT_HEADERS_RUNS_FACTSHEET,IplAnalyser.playerTypes.RUNS);
         } catch (IplAnalyserException e) {
             Assert.assertEquals(IplAnalyserException.ExceptionType.HEADER_CAPTURING_ISSUE, e.type);
         }
@@ -68,7 +68,7 @@ public class MostRunsFactSheetTestCase {
     public void givenFactSheetOFMostRuns_WithSortedOnBattingAverage_ShouldReturnPlayerWithLowestBattingAverage() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
-            iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
+            iplAnalyser.LoadFactSheetCsv(RUNS_FACTSHEET,IplAnalyser.playerTypes.RUNS);
             String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.BATING_AVERAGE);
             IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
             Assert.assertEquals("Ishant Sharma", iplCSV[0].playerName);
@@ -80,7 +80,7 @@ public class MostRunsFactSheetTestCase {
     public void givenFactSheetOFMostRuns_WithSortedOnBattingAverage_ShouldReturnPlayerWithHighestBattingAverage() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
-            iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
+            iplAnalyser.LoadFactSheetCsv(RUNS_FACTSHEET,IplAnalyser.playerTypes.RUNS);
             String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.BATING_AVERAGE);
             IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
             Assert.assertEquals("MS Dhoni", iplCSV[iplCSV.length - 1].playerName);
@@ -92,7 +92,7 @@ public class MostRunsFactSheetTestCase {
     public void givenFactSheetOFMostRuns_WithSortedOnStrikingRates_ShouldReturnPlayerWithLowestStrikingRate() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
-            iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
+            iplAnalyser.LoadFactSheetCsv(RUNS_FACTSHEET,IplAnalyser.playerTypes.RUNS);
             String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.STRIKING_RATES);
             IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
             Assert.assertEquals("Bhuvneshwar Kumar", iplCSV[0].playerName);
@@ -104,7 +104,7 @@ public class MostRunsFactSheetTestCase {
     public void givenFactSheetOFMostRuns_WithSortedOnStrikingRates_ShouldReturnPlayerWithHighestStrikingRate() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
-            iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
+            iplAnalyser.LoadFactSheetCsv(RUNS_FACTSHEET,IplAnalyser.playerTypes.RUNS);
             String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.STRIKING_RATES);
             IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
             Assert.assertEquals("Ishant Sharma", iplCSV[iplCSV.length - 1].playerName);
@@ -116,7 +116,7 @@ public class MostRunsFactSheetTestCase {
     public void givenFactSheetOFMostRuns_WithSortedOnMaximumSixesFours_ShouldReturnPlayerWithLowestSixesFours() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
-            iplAnalyser.loadMostRunsFactSheet(SAMPLE_6s_AND_4s);
+            iplAnalyser.LoadFactSheetCsv(SAMPLE_6s_AND_4s,IplAnalyser.playerTypes.RUNS);
             String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.MAX_SIXES_AND_FOURS);
             IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
             Assert.assertEquals("Tim Southee", iplCSV[0].playerName);
@@ -128,7 +128,7 @@ public class MostRunsFactSheetTestCase {
     public void givenFactSheetOFMostRuns_WithSortedOnMaximumSixesFours_ShouldReturnPlayerWithHighestSixesFours() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
-            iplAnalyser.loadMostRunsFactSheet(SAMPLE_6s_AND_4s);
+            iplAnalyser.LoadFactSheetCsv(SAMPLE_6s_AND_4s,IplAnalyser.playerTypes.RUNS);
             String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.MAX_SIXES_AND_FOURS);
             IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
             Assert.assertEquals("Faf du Plessis", iplCSV[iplCSV.length - 1].playerName);
@@ -140,7 +140,7 @@ public class MostRunsFactSheetTestCase {
     public void givenFactSheetOFMostRuns_WithSortedOnMaximumStrikingRate_ShouldReturnPlayerWithLowestStrikingRate() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
-            iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
+            iplAnalyser.LoadFactSheetCsv(RUNS_FACTSHEET,IplAnalyser.playerTypes.RUNS);
             String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.STRIKING_RATES);
             IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
             Assert.assertEquals("Shakib Al Hasan", iplCSV[0].playerName);
@@ -152,7 +152,7 @@ public class MostRunsFactSheetTestCase {
     public void givenFactSheetOFMostRuns_WithSortedOnMaximumStrikingRate_ShouldReturnPlayerWithHighestStrikingRate() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
-            iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
+            iplAnalyser.LoadFactSheetCsv(RUNS_FACTSHEET,IplAnalyser.playerTypes.RUNS);
             String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.STRIKING_RATES);
             IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
             Assert.assertEquals("Andre Russell", iplCSV[iplCSV.length - 1].playerName);
@@ -164,7 +164,7 @@ public class MostRunsFactSheetTestCase {
     public void givenFactSheetOFMostRuns_SortedOnAverageWithStrikingRate_ShouldReturnPlayerWithLowestAverageWithStrikingRate() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
-            iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
+            iplAnalyser.LoadFactSheetCsv(RUNS_FACTSHEET,IplAnalyser.playerTypes.RUNS);
             String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.BEST_AVERAGE_WITH_STRIKING_RATE);
             IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
             Assert.assertEquals("Tim Southee", iplCSV[0].playerName);
@@ -176,7 +176,7 @@ public class MostRunsFactSheetTestCase {
     public void givenFactSheetOFMostRuns_SortedOnAverageWithStrikingRate_ShouldReturnPlayerWithHighestAverageWithStrikingRate() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
-            iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
+            iplAnalyser.LoadFactSheetCsv(RUNS_FACTSHEET,IplAnalyser.playerTypes.RUNS);
             String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.BEST_AVERAGE_WITH_STRIKING_RATE);
             IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
             Assert.assertEquals("MS Dhoni", iplCSV[iplCSV.length - 1].playerName);
@@ -187,7 +187,7 @@ public class MostRunsFactSheetTestCase {
     public void givenFactSheetOFMostRuns_SortedOnAverageWithMaximumRunsWithBestAverage_ShouldReturnPlayerWithLowestAverageWithRuns() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
-            iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
+            iplAnalyser.LoadFactSheetCsv(RUNS_FACTSHEET,IplAnalyser.playerTypes.RUNS);
             String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.MAX_RUNS_WITH_BEST_AVERAGE);
             IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
             Assert.assertEquals("Tim Southee", iplCSV[0].playerName);
@@ -199,7 +199,7 @@ public class MostRunsFactSheetTestCase {
     public void givenFactSheetOFMostRuns_SortedOnAverageWithMaximumRunsWithBestAverage_ShouldReturnPlayerWithHighestAverageWithRuns() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
-            iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
+            iplAnalyser.LoadFactSheetCsv(RUNS_FACTSHEET,IplAnalyser.playerTypes.RUNS);
             String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.MAX_RUNS_WITH_BEST_AVERAGE);
             IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
             Assert.assertEquals("MS Dhoni", iplCSV[iplCSV.length - 1].playerName);
