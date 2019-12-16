@@ -33,6 +33,7 @@ public class IplAnalyser {
         featureComparator.put(FeatureEnum.STRIKING_RATES, strikingRateWithMaxSixesAndFoursComparator);
         featureComparator.put(FeatureEnum.MAX_SIXES_AND_FOURS, maximumSixesAndFoursComparator);
         featureComparator.put(FeatureEnum.BEST_AVERAGE_WITH_STRIKING_RATE,averageWithStrikingRateComparator);
+        featureComparator.put(FeatureEnum.MAX_RUNS_WITH_BEST_AVERAGE,averageComparator.thenComparing(Comparator.comparing(ipl->ipl.totalRuns)));
     }
 
     public long loadMostRunsFactSheet(String csvFilePath) throws IplAnalyserException {

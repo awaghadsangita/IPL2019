@@ -172,12 +172,35 @@ public class MostRunsFactSheetTestCase {
         }
     }
 
-    @Test
+        @Test
     public void givenFactSheetOFMostRuns_SortedOnAverageWithStrikingRate_ShouldReturnPlayerWithHighestAverageWithStrikingRate() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
             iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
             String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.BEST_AVERAGE_WITH_STRIKING_RATE);
+            IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
+            Assert.assertEquals("MS Dhoni", iplCSV[iplCSV.length - 1].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
+    @Test
+    public void givenFactSheetOFMostRuns_SortedOnAverageWithMaximumRunsWithBestAverage_ShouldReturnPlayerWithLowestAverageWithRuns() {
+        try {
+            IplAnalyser iplAnalyser = new IplAnalyser();
+            iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
+            String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.MAX_RUNS_WITH_BEST_AVERAGE);
+            IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
+            Assert.assertEquals("Tim Southee", iplCSV[0].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
+
+    @Test
+    public void givenFactSheetOFMostRuns_SortedOnAverageWithMaximumRunsWithBestAverage_ShouldReturnPlayerWithHighestAverageWithRuns() {
+        try {
+            IplAnalyser iplAnalyser = new IplAnalyser();
+            iplAnalyser.loadMostRunsFactSheet(RUNS_FACTSHEET);
+            String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.MAX_RUNS_WITH_BEST_AVERAGE);
             IplMostRunsCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplMostRunsCSV[].class);
             Assert.assertEquals("MS Dhoni", iplCSV[iplCSV.length - 1].playerName);
         } catch (IplAnalyserException e) {
