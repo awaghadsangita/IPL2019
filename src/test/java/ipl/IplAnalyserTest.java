@@ -142,7 +142,7 @@ public class IplAnalyserTest {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
             iplAnalyser.LoadFactSheetCsv(RUNS_FACTSHEET, IplAnalyser.playerTypes.RUNS);
-            String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.STRIKING_RATES_WTIH_MAX_SIXES_FOURS);
+            String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.STRIKING_RATE_WTIH_MAX_SIXES_FOURS);
             IplBatsManCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsManCSV[].class);
             Assert.assertEquals("Shakib Al Hasan", iplCSV[0].playerName);
         } catch (IplAnalyserException e) {
@@ -154,7 +154,7 @@ public class IplAnalyserTest {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
             iplAnalyser.LoadFactSheetCsv(RUNS_FACTSHEET, IplAnalyser.playerTypes.RUNS);
-            String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.STRIKING_RATES_WTIH_MAX_SIXES_FOURS);
+            String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.STRIKING_RATE_WTIH_MAX_SIXES_FOURS);
             IplBatsManCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsManCSV[].class);
             Assert.assertEquals("Andre Russell", iplCSV[iplCSV.length - 1].playerName);
         } catch (IplAnalyserException e) {
@@ -254,6 +254,30 @@ public class IplAnalyserTest {
             String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.STRIKING_RATES);
             IplBatsManCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsManCSV[].class);
             Assert.assertEquals("Krishnappa Gowtham", iplCSV[iplCSV.length - 1].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
+
+    @Test
+    public void givenFactSheetOFMostWickets_SortedOnEconomy_ShouldReturnPlayerWithLowestEconomy() {
+        try {
+            IplAnalyser iplAnalyser = new IplAnalyser();
+            iplAnalyser.LoadFactSheetCsv(WICKETS_FACTSHEET, IplAnalyser.playerTypes.WICKETS);
+            String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.ECONOMY);
+            IplBatsManCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsManCSV[].class);
+            Assert.assertEquals("Shivam Dube", iplCSV[0].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
+
+    @Test
+    public void givenFactSheetOFMostWickets_SortedOnEconomy_ShouldReturnPlayerWithHighestEconomy() {
+        try {
+            IplAnalyser iplAnalyser = new IplAnalyser();
+            iplAnalyser.LoadFactSheetCsv(WICKETS_FACTSHEET, IplAnalyser.playerTypes.WICKETS);
+            String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.ECONOMY);
+            IplBatsManCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsManCSV[].class);
+            Assert.assertEquals("Ben Cutting", iplCSV[iplCSV.length - 1].playerName);
         } catch (IplAnalyserException e) {
         }
     }
