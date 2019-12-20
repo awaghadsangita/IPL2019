@@ -1,0 +1,4 @@
+:java.lang.NumberFormatException: For input string: "null"
+8java.lang.RuntimeException: Error capturing CSV header!
+8java.lang.RuntimeException: Error capturing CSV header!
+;java.lang.RuntimeException: java.lang.NullPointerException

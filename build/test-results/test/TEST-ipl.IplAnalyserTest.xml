@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ipl.IplAnalyserTest" tests="25" skipped="0" failures="0" errors="0" timestamp="2019-12-20T11:51:10" hostname="admin1-Lenovo-Product" time="2.653">
+  <properties/>
+  <testcase name="givenFactSheetOFMostWickets_SortedOnEconomy_ShouldReturnPlayerWithHighestEconomy" classname="ipl.IplAnalyserTest" time="0.427"/>
+  <testcase name="givenFactSheetOFMostWickets_SortedOnStrikingRates_ShouldReturnPlayerWithHighestStrikingRates" classname="ipl.IplAnalyserTest" time="0.151"/>
+  <testcase name="givenFactSheetOFMostRuns_WithSortedOnMaximumStrikingRate_ShouldReturnPlayerWithLowestStrikingRate" classname="ipl.IplAnalyserTest" time="0.147"/>
+  <testcase name="givenFactSheetOFMostRuns_SortedOnAverageWithStrikingRate_ShouldReturnPlayerWithLowestAverageWithStrikingRate" classname="ipl.IplAnalyserTest" time="0.145"/>
+  <testcase name="givenMostRunsFactSheet_ReturnExactNumberOfPlayers" classname="ipl.IplAnalyserTest" time="0.134"/>
+  <testcase name="givenFactSheetOFMostRuns_SortedOnAverageWithMaximumRunsWithBestAverage_ShouldReturnPlayerWithHighestAverageWithRuns" classname="ipl.IplAnalyserTest" time="0.005"/>
+  <testcase name="givenFactSheetOFMostRuns_SortedOnAverageWithStrikingRate_ShouldReturnPlayerWithHighestAverageWithStrikingRate" classname="ipl.IplAnalyserTest" time="0.132"/>
+  <testcase name="givenFactSheetOFMostRuns_WithSortedOnBattingAverage_ShouldReturnPlayerWithHighestBattingAverage" classname="ipl.IplAnalyserTest" time="0.131"/>
+  <testcase name="givenMostRunsFactSheet_ButWithFileWithoutReadWritePermission_ShouldThrowException" classname="ipl.IplAnalyserTest" time="0.001"/>
+  <testcase name="givenFactSheetOFMostWickets_SortedOnBestStrikingRateWithFoursAndFivesWickets_ShouldReturnPlayerWithLowestSortedFeature" classname="ipl.IplAnalyserTest" time="0.131"/>
+  <testcase name="givenFactSheetOFMostWickets_SortedOnBowlingAverage_ShouldReturnPlayerWithHighestBowlingAverageW" classname="ipl.IplAnalyserTest" time="0.12"/>
+  <testcase name="givenFactSheetOFMostWickets_SortedOnStrikingRates_ShouldReturnPlayerWithLowestStrikingRates" classname="ipl.IplAnalyserTest" time="0.118"/>
+  <testcase name="givenMostRunsFactSheet_ButWithFileWithIncorrectHeaders_ShouldThrowException" classname="ipl.IplAnalyserTest" time="0.016"/>
+  <testcase name="givenFactSheetOFMostRuns_WithSortedOnMaximumStrikingRate_ShouldReturnPlayerWithHighestStrikingRate" classname="ipl.IplAnalyserTest" time="0.121"/>
+  <testcase name="givenFactSheetOFMostRuns_SortedOnAverageWithMaximumRunsWithBestAverage_ShouldReturnPlayerWithLowestAverageWithRuns" classname="ipl.IplAnalyserTest" time="0.126"/>
+  <testcase name="givenMostRunsFactSheet_ButWithWrongFile_ShouldThrowException" classname="ipl.IplAnalyserTest" time="0.001"/>
+  <testcase name="givenFactSheetOFMostWickets_SortedOnBestStrikingRateWithFoursAndFivesWickets_ShouldReturnPlayerWithHighestSortedFeature" classname="ipl.IplAnalyserTest" time="0.117"/>
+  <testcase name="givenFactSheetOFMostRuns_WithSortedOnStrikingRates_ShouldReturnPlayerWithHighestStrikingRate" classname="ipl.IplAnalyserTest" time="0.121"/>
+  <testcase name="givenFactSheetOFMostRuns_WithSortedOnMaximumSixesFours_ShouldReturnPlayerWithLowestSixesFours" classname="ipl.IplAnalyserTest" time="0.013"/>
+  <testcase name="givenFactSheetOFMostWickets_SortedOnBowlingAverage_ShouldReturnPlayerWithLowestBowlingAverage" classname="ipl.IplAnalyserTest" time="0.115"/>
+  <testcase name="givenMostRunsFactSheet_ButWithFileWithIncorrectDelimiter_ShouldThrowException" classname="ipl.IplAnalyserTest" time="0.001"/>
+  <testcase name="givenFactSheetOFMostRuns_WithSortedOnBattingAverage_ShouldReturnPlayerWithLowestBattingAverage" classname="ipl.IplAnalyserTest" time="0.124"/>
+  <testcase name="givenFactSheetOFMostRuns_WithSortedOnMaximumSixesFours_ShouldReturnPlayerWithHighestSixesFours" classname="ipl.IplAnalyserTest" time="0.012"/>
+  <testcase name="givenFactSheetOFMostWickets_SortedOnEconomy_ShouldReturnPlayerWithLowestEconomy" classname="ipl.IplAnalyserTest" time="0.114"/>
+  <testcase name="givenFactSheetOFMostRuns_WithSortedOnStrikingRates_ShouldReturnPlayerWithLowestStrikingRate" classname="ipl.IplAnalyserTest" time="0.12"/>
+  <system-out><![CDATA[java.lang.NumberFormatException: For input string: "null"
+java.lang.RuntimeException: Error capturing CSV header!
+java.lang.RuntimeException: Error capturing CSV header!
+java.lang.RuntimeException: java.lang.NullPointerException
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
