@@ -70,7 +70,7 @@ public class IplAnalyserTest {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
             iplAnalyser.LoadFactSheetCsv(RUNS_FACTSHEET, IplAnalyser.playerTypes.RUNS);
-            String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.BATING_AVERAGE);
+            String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.AVERAGE);
             IplBatsManCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsManCSV[].class);
             Assert.assertEquals("Ishant Sharma", iplCSV[0].playerName);
         } catch (IplAnalyserException e) {
@@ -82,7 +82,7 @@ public class IplAnalyserTest {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
             iplAnalyser.LoadFactSheetCsv(RUNS_FACTSHEET, IplAnalyser.playerTypes.RUNS);
-            String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.BATING_AVERAGE);
+            String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.AVERAGE);
             IplBatsManCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsManCSV[].class);
             Assert.assertEquals("MS Dhoni", iplCSV[iplCSV.length - 1].playerName);
         } catch (IplAnalyserException e) {
@@ -306,4 +306,27 @@ public class IplAnalyserTest {
         }
     }
 
+    @Test
+    public void givenFactSheetOFMostWickets_SortedOnBowlingAverageWithStrikingRate_ShouldReturnPlayerWithLowestSortedFeature() {
+        try {
+            IplAnalyser iplAnalyser = new IplAnalyser();
+            iplAnalyser.LoadFactSheetCsv(WICKETS_FACTSHEET, IplAnalyser.playerTypes.WICKETS);
+            String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.BOWLING_AVERAGE_WITH_STRIKING_RATE);
+            IplBatsManCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsManCSV[].class);
+            Assert.assertEquals("Suresh Raina", iplCSV[0].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
+
+    @Test
+    public void givenFactSheetOFMostWickets_SortedOnBowlingAverageWithStrikingRate_ShouldReturnPlayerWithHighestSortedFeature() {
+        try {
+            IplAnalyser iplAnalyser = new IplAnalyser();
+            iplAnalyser.LoadFactSheetCsv(WICKETS_FACTSHEET, IplAnalyser.playerTypes.WICKETS);
+            String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.BOWLING_AVERAGE_WITH_STRIKING_RATE);
+            IplBatsManCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsManCSV[].class);
+            Assert.assertEquals("Krishnappa Gowtham", iplCSV[iplCSV.length - 1].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
 }

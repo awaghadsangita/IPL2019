@@ -17,7 +17,7 @@ public class IplAnalyser {
     public IplAnalyser() {
         this.iplMap = new HashMap<>();
         this.featureComparator = new HashMap<>();
-        featureComparator.put(FeatureEnum.BATING_AVERAGE, Comparator.comparing(ipl -> ipl.average));
+        featureComparator.put(FeatureEnum.AVERAGE, Comparator.comparing(ipl -> ipl.average));
         featureComparator.put(FeatureEnum.STRIKING_RATES, Comparator.comparing(ipl -> ipl.strikingRate));
         Comparator<IplDao> strikingRateComparator = Comparator.comparing(ipl -> ipl.strikingRate);
         Comparator<IplDao> maximumSixesAndFoursComparator = (new MaximumSixsAndFoursComparator().thenComparing(new MinimumBallsComparator()));
@@ -33,6 +33,7 @@ public class IplAnalyser {
         featureComparator.put(FeatureEnum.MAX_RUNS_WITH_BEST_AVERAGE, averageComparator.thenComparing(ipl -> ipl.totalRuns));
         featureComparator.put(FeatureEnum.ECONOMY,Comparator.comparing(ipl-> ipl.economy));
         featureComparator.put(FeatureEnum.STRIKING_RATE_WITH_MAX_FOUR_AND_FIVE_WICKETS,strikingRateComparator.thenComparing(maximumFoursAndFiveWicketsComparator));
+        featureComparator.put(FeatureEnum.BOWLING_AVERAGE_WITH_STRIKING_RATE,averageComparator.thenComparing(strikingRateComparator));
     }
 
     public int LoadFactSheetCsv(String csvFilePath, playerTypes playerType) throws IplAnalyserException {
