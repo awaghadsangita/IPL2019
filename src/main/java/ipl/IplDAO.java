@@ -1,7 +1,5 @@
 package ipl;
 
-import com.opencsv.bean.CsvBindByName;
-
 public class IplDAO {
 
     public String playerName;
@@ -9,12 +7,13 @@ public class IplDAO {
     public double average;
     public double strikingRate;
     public int totalRuns;
+    public int wickets;
     public int century;
     public int halfCentury;
     public int fours;
     public int sixes;
 
-    public IplDAO(IplMostRunsCSV iplMostRunsCSV) {
+    public IplDAO(IplBatsManCSV iplMostRunsCSV) {
         this.playerName = iplMostRunsCSV.playerName;
         this.match = Integer.parseInt(String.valueOf(iplMostRunsCSV.match));
         if (iplMostRunsCSV.average.contains("-")) {
@@ -29,5 +28,20 @@ public class IplDAO {
         this.halfCentury = Integer.parseInt(String.valueOf(iplMostRunsCSV.halfCentury));
         this.sixes = Integer.parseInt(String.valueOf(iplMostRunsCSV.sixes));
         this.fours = Integer.parseInt(String.valueOf(iplMostRunsCSV.fours));
+    }
+    public IplDAO(IplBowlerCSV iplBowlerCSVData) {
+        this.playerName = iplBowlerCSVData.playerName;
+        this.match = Integer.parseInt(String.valueOf(iplBowlerCSVData.match));
+        if (iplBowlerCSVData.average.contains("-")) {
+            this.average = 0;
+        }
+        if (!iplBowlerCSVData.average.contains("-")) {
+            this.average = Double.parseDouble(iplBowlerCSVData.average);
+        }
+        this.wickets=Integer.parseInt(String.valueOf(iplBowlerCSVData.wickets));
+        this.strikingRate = Double.parseDouble(iplBowlerCSVData.strikingRate);
+        this.totalRuns=Integer.parseInt(String.valueOf(iplBowlerCSVData.totalRuns));
+        this.sixes = Integer.parseInt(String.valueOf(iplBowlerCSVData.sixes));
+        this.fours = Integer.parseInt(String.valueOf(iplBowlerCSVData.fours));
     }
 }
