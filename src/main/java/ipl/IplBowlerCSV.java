@@ -15,6 +15,8 @@ public class IplBowlerCSV {
     public String wickets;
     @CsvBindByName(column = "Avg")
     public String average;
+    @CsvBindByName(column = "Econ")
+    public String economy;
     @CsvBindByName(column = "4w")
     public String fourWickets;
     @CsvBindByName(column = "5w")

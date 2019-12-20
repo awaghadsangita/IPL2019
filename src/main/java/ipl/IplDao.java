@@ -14,6 +14,7 @@ public class IplDao {
     public int sixes;
     public int fourWickets;
     public int fiveWickets;
+    public double economy;
 
     public IplDao(IplBatsManCSV iplMostRunsCSV) {
         this.playerName = iplMostRunsCSV.playerName;
@@ -47,6 +48,7 @@ public class IplDao {
         if (!iplBowlerCSVData.strikingRate.contains("-")) {
             this.strikingRate = Double.parseDouble(iplBowlerCSVData.strikingRate);
         }
+        this.economy=Double.parseDouble(iplBowlerCSVData.economy);
         this.totalRuns=Integer.parseInt(String.valueOf(iplBowlerCSVData.totalRuns));
         this.fiveWickets = Integer.parseInt(String.valueOf(iplBowlerCSVData.fiveWickets));
         this.fourWickets = Integer.parseInt(String.valueOf(iplBowlerCSVData.fourWickets));
