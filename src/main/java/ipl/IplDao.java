@@ -12,6 +12,8 @@ public class IplDAO {
     public int halfCentury;
     public int fours;
     public int sixes;
+    public int fourWickets;
+    public int fiveWickets;
 
     public IplDAO(IplBatsManCSV iplMostRunsCSV) {
         this.playerName = iplMostRunsCSV.playerName;
@@ -39,9 +41,14 @@ public class IplDAO {
             this.average = Double.parseDouble(iplBowlerCSVData.average);
         }
         this.wickets=Integer.parseInt(String.valueOf(iplBowlerCSVData.wickets));
-        this.strikingRate = Double.parseDouble(iplBowlerCSVData.strikingRate);
+        if (iplBowlerCSVData.strikingRate.contains("-")) {
+            this.strikingRate = 0;
+        }
+        if (!iplBowlerCSVData.strikingRate.contains("-")) {
+            this.strikingRate = Double.parseDouble(iplBowlerCSVData.strikingRate);
+        }
         this.totalRuns=Integer.parseInt(String.valueOf(iplBowlerCSVData.totalRuns));
-        this.sixes = Integer.parseInt(String.valueOf(iplBowlerCSVData.sixes));
-        this.fours = Integer.parseInt(String.valueOf(iplBowlerCSVData.fours));
+        this.fiveWickets = Integer.parseInt(String.valueOf(iplBowlerCSVData.fiveWickets));
+        this.fourWickets = Integer.parseInt(String.valueOf(iplBowlerCSVData.fourWickets));
     }
 }
