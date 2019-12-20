@@ -24,10 +24,11 @@ public class IplAnalyser {
         Comparator<IplDao> strikingRateWithMaxSixesAndFoursComparator = maximumSixesAndFoursComparator.thenComparing(strikingRateComparator);
         Comparator<IplDao> averageComparator = Comparator.comparing(ipl -> ipl.average);
         Comparator<IplDao> averageWithStrikingRateComparator = averageComparator.thenComparing(strikingRateComparator);
-        featureComparator.put(FeatureEnum.STRIKING_RATES_WTIH_MAX_SIXES_FOURS, strikingRateWithMaxSixesAndFoursComparator);
+        featureComparator.put(FeatureEnum.STRIKING_RATE_WTIH_MAX_SIXES_FOURS, strikingRateWithMaxSixesAndFoursComparator);
         featureComparator.put(FeatureEnum.MAX_SIXES_AND_FOURS, maximumSixesAndFoursComparator);
         featureComparator.put(FeatureEnum.BEST_AVERAGE_WITH_STRIKING_RATE, averageWithStrikingRateComparator);
         featureComparator.put(FeatureEnum.MAX_RUNS_WITH_BEST_AVERAGE, averageComparator.thenComparing(ipl -> ipl.totalRuns));
+        featureComparator.put(FeatureEnum.ECONOMY,Comparator.comparing(ipl-> ipl.economy));
     }
 
     public int LoadFactSheetCsv(String csvFilePath, playerTypes playerType) throws IplAnalyserException {
