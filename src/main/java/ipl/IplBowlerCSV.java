@@ -15,14 +15,14 @@ public class IplBowlerCSV {
     public String wickets;
     @CsvBindByName(column = "Avg")
     public String average;
-    @CsvBindByName(column = "4s")
-    public String fours;
-    @CsvBindByName(column = "5s")
-    public String sixes;
+    @CsvBindByName(column = "4w")
+    public String fourWickets;
+    @CsvBindByName(column = "5w")
+    public String fiveWickets;
 
     public IplBowlerCSV() {
     }
 
-    public IplBowlerCSV(IplDAO iplDAO) {
+    public IplBowlerCSV(IplDao iplDAO) {
     }
 }

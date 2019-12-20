@@ -9,8 +9,8 @@ import java.util.*;
 import static java.util.stream.Collectors.toCollection;
 
 public class IplAnalyser {
-    Map<String, IplDAO> iplMap = null;
-    Map<FeatureEnum, Comparator<IplDAO>> featureComparator = null;
+    Map<String, IplDao> iplMap = null;
+    Map<FeatureEnum, Comparator<IplDao>> featureComparator = null;
 
     enum playerTypes {WICKETS, RUNS};
 
@@ -19,11 +19,11 @@ public class IplAnalyser {
         this.featureComparator = new HashMap<>();
         featureComparator.put(FeatureEnum.BATING_AVERAGE, Comparator.comparing(ipl -> ipl.average));
         featureComparator.put(FeatureEnum.STRIKING_RATES, Comparator.comparing(ipl -> ipl.strikingRate));
-        Comparator<IplDAO> strikingRateComparator = Comparator.comparing(ipl -> ipl.strikingRate);
-        Comparator<IplDAO> maximumSixesAndFoursComparator = (new MaximumSixsAndFoursComparator().thenComparing(new MinimumBallsComparator()));
-        Comparator<IplDAO> strikingRateWithMaxSixesAndFoursComparator = maximumSixesAndFoursComparator.thenComparing(strikingRateComparator);
-        Comparator<IplDAO> averageComparator = Comparator.comparing(ipl -> ipl.average);
-        Comparator<IplDAO> averageWithStrikingRateComparator = averageComparator.thenComparing(strikingRateComparator);
+        Comparator<IplDao> strikingRateComparator = Comparator.comparing(ipl -> ipl.strikingRate);
+        Comparator<IplDao> maximumSixesAndFoursComparator = (new MaximumSixsAndFoursComparator().thenComparing(new MinimumBallsComparator()));
+        Comparator<IplDao> strikingRateWithMaxSixesAndFoursComparator = maximumSixesAndFoursComparator.thenComparing(strikingRateComparator);
+        Comparator<IplDao> averageComparator = Comparator.comparing(ipl -> ipl.average);
+        Comparator<IplDao> averageWithStrikingRateComparator = averageComparator.thenComparing(strikingRateComparator);
         featureComparator.put(FeatureEnum.STRIKING_RATES_WTIH_MAX_SIXES_FOURS, strikingRateWithMaxSixesAndFoursComparator);
         featureComparator.put(FeatureEnum.MAX_SIXES_AND_FOURS, maximumSixesAndFoursComparator);
         featureComparator.put(FeatureEnum.BEST_AVERAGE_WITH_STRIKING_RATE, averageWithStrikingRateComparator);

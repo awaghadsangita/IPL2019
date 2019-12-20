@@ -1,12 +1,12 @@
 package iplcomprator;
 
-import ipl.IplDAO;
+import ipl.IplDao;
 
 import java.util.Comparator;
 
-public class MinimumBallsComparator implements Comparator<IplDAO> {
+public class MinimumBallsComparator implements Comparator<IplDao> {
     @Override
-    public int compare(IplDAO iblDaoObject1, IplDAO iblDaoObject2) {
+    public int compare(IplDao iblDaoObject1, IplDao iblDaoObject2) {
         return (iblDaoObject2.sixes + iblDaoObject2.fours)-(iblDaoObject1.sixes + iblDaoObject1.fours) ;
     }
 }

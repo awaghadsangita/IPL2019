@@ -25,6 +25,6 @@ public class IplBatsManCSV {
     public IplBatsManCSV() {
     }
 
-    public IplBatsManCSV(IplDAO iplDAO) {
+    public IplBatsManCSV(IplDao iplDAO) {
     }
 }

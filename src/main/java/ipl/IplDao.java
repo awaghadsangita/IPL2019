@@ -1,6 +1,6 @@
 package ipl;
 
-public class IplDAO {
+public class IplDao {
 
     public String playerName;
     public int match;
@@ -15,7 +15,7 @@ public class IplDAO {
     public int fourWickets;
     public int fiveWickets;
 
-    public IplDAO(IplBatsManCSV iplMostRunsCSV) {
+    public IplDao(IplBatsManCSV iplMostRunsCSV) {
         this.playerName = iplMostRunsCSV.playerName;
         this.match = Integer.parseInt(String.valueOf(iplMostRunsCSV.match));
         if (iplMostRunsCSV.average.contains("-")) {
@@ -31,7 +31,7 @@ public class IplDAO {
         this.sixes = Integer.parseInt(String.valueOf(iplMostRunsCSV.sixes));
         this.fours = Integer.parseInt(String.valueOf(iplMostRunsCSV.fours));
     }
-    public IplDAO(IplBowlerCSV iplBowlerCSVData) {
+    public IplDao(IplBowlerCSV iplBowlerCSVData) {
         this.playerName = iplBowlerCSVData.playerName;
         this.match = Integer.parseInt(String.valueOf(iplBowlerCSVData.match));
         if (iplBowlerCSVData.average.contains("-")) {

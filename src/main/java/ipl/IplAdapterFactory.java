@@ -8,6 +8,6 @@ public class IplAdapterFactory extends IplAnalyser {
         if (playerType.equals(IplAnalyser.playerTypes.WICKETS)) {
             return new IplBowlerAdapter();
         }
-        throw new IplAnalyserException("Unkonwn player type", IplAnalyserException.ExceptionType.INCORRECT_PLAYER_TYPE);
+        throw new IplAnalyserException("Unknown player type", IplAnalyserException.ExceptionType.INCORRECT_PLAYER_TYPE);
     }
 }
