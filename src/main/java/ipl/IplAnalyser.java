@@ -26,6 +26,7 @@ public class IplAnalyser {
         Comparator<IplDao> averageWithStrikingRateComparator = averageComparator.thenComparing(strikingRateComparator);
         Comparator<IplDao> maximumFourWicketsComparator=Comparator.comparing(ipl -> ipl.fourWickets);
         Comparator<IplDao> maximumFiveWicketsComparator=Comparator.comparing(ipl -> ipl.fiveWickets);
+        Comparator<IplDao> maximumWicketsComparator=Comparator.comparing(ipl->ipl.wickets);
         Comparator<IplDao> maximumFoursAndFiveWicketsComparator = maximumFiveWicketsComparator.thenComparing(maximumFourWicketsComparator);
         featureComparator.put(FeatureEnum.STRIKING_RATE_WTIH_MAX_SIXES_FOURS, strikingRateWithMaxSixesAndFoursComparator);
         featureComparator.put(FeatureEnum.MAX_SIXES_AND_FOURS, maximumSixesAndFoursComparator);
@@ -34,6 +35,7 @@ public class IplAnalyser {
         featureComparator.put(FeatureEnum.ECONOMY,Comparator.comparing(ipl-> ipl.economy));
         featureComparator.put(FeatureEnum.STRIKING_RATE_WITH_MAX_FOUR_AND_FIVE_WICKETS,strikingRateComparator.thenComparing(maximumFoursAndFiveWicketsComparator));
         featureComparator.put(FeatureEnum.BOWLING_AVERAGE_WITH_STRIKING_RATE,averageComparator.thenComparing(strikingRateComparator));
+        featureComparator.put(FeatureEnum.WICKETS_WITH_BOWLING,maximumFiveWicketsComparator.thenComparing(averageComparator));
     }
 
     public int LoadFactSheetCsv(String csvFilePath, playerTypes playerType) throws IplAnalyserException {

@@ -329,4 +329,27 @@ public class IplAnalyserTest {
         } catch (IplAnalyserException e) {
         }
     }
+    @Test
+    public void givenFactSheetOFMostWickets_SortedOnWicketsWithBowlingAverage_ShouldReturnPlayerWithLowestSortedFeature() {
+        try {
+            IplAnalyser iplAnalyser = new IplAnalyser();
+            iplAnalyser.LoadFactSheetCsv(WICKETS_FACTSHEET, IplAnalyser.playerTypes.WICKETS);
+            String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.WICKETS_WITH_BOWLING);
+            IplBatsManCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsManCSV[].class);
+            Assert.assertEquals("Suresh Raina", iplCSV[0].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
+
+    @Test
+    public void givenFactSheetOFMostWickets_SortedOnWicketsWithBowlingAverage_ShouldReturnPlayerWithHighestSortedFeature() {
+        try {
+            IplAnalyser iplAnalyser = new IplAnalyser();
+            iplAnalyser.LoadFactSheetCsv(WICKETS_FACTSHEET, IplAnalyser.playerTypes.WICKETS);
+            String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.WICKETS_WITH_BOWLING);
+            IplBatsManCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsManCSV[].class);
+            Assert.assertEquals("Alzarri Joseph", iplCSV[iplCSV.length - 1].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
 }
