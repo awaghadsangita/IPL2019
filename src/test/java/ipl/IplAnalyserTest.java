@@ -6,14 +6,8 @@ import org.junit.Test;
 
 public class IplAnalyserTest {
     private static final String RUNS_FACTSHEET = "/home/admin1/IdeaProjects/IPL2019/src/test/resources/IPL2019FactsheetMostRuns.csv";
-    private static final String WRONG_RUNS_FACTSHEET = "/home/admin1/IdeaProjects/IPL2019/src/test/resources/Wrong_csvFile.csv";
-    ;
-    private static final String INCORRECT_DELIMITER_RUNS_FACTSHEET = "/home/admin1/IdeaProjects/IPL2019/src/test/resources/IncorrectDelimiter_IPL2019FactsheetMostRuns.csv";
-    private static final String INCORRECT_HEADERS_RUNS_FACTSHEET = "/home/admin1/IdeaProjects/IPL2019/src/test/resources/IncorrectHeaders_IPL2019FactsheetMostRuns.csv";
-    private static final String IOISSUE_RUNS_FACTSHEET = "/home/admin1/IdeaProjects/IPL2019/src/test/resources/IO_ISSUE_IPL2019FactsheetMostRuns.csv";
     private static final String WICKETS_FACTSHEET = "/home/admin1/IdeaProjects/IPL2019/src/test/resources/IPL2019FactsheetMostWkts.csv";
     private String SAMPLE_6s_AND_4s = "/home/admin1/IdeaProjects/IPL2019/src/test/resources/Sample_MAX_4s_AND_6s.csv";
-
 
     @Test
     public void givenMostRunsFactSheet_ReturnExactNumberOfPlayers() {
@@ -22,46 +16,6 @@ public class IplAnalyserTest {
             long numberOfPlayers = iplAnalyser.LoadFactSheetCsv(IplAnalyser.playerTypes.BATSMAN, RUNS_FACTSHEET);
             Assert.assertEquals(100, numberOfPlayers);
         } catch (IplAnalyserException e) {
-        }
-    }
-
-    @Test
-    public void givenMostRunsFactSheet_ButWithWrongFile_ShouldThrowException() {
-        try {
-            IplAnalyser iplAnalyser = new IplAnalyser();
-            iplAnalyser.LoadFactSheetCsv(IplAnalyser.playerTypes.BATSMAN, WRONG_RUNS_FACTSHEET);
-        } catch (IplAnalyserException e) {
-            Assert.assertEquals(IplAnalyserException.ExceptionType.HEADER_CAPTURING_ISSUE, e.type);
-        }
-    }
-
-    @Test
-    public void givenMostRunsFactSheet_ButWithFileWithIncorrectDelimiter_ShouldThrowException() {
-        try {
-            IplAnalyser iplAnalyser = new IplAnalyser();
-            iplAnalyser.LoadFactSheetCsv(IplAnalyser.playerTypes.BATSMAN, INCORRECT_DELIMITER_RUNS_FACTSHEET);
-        } catch (IplAnalyserException e) {
-            Assert.assertEquals(IplAnalyserException.ExceptionType.HEADER_CAPTURING_ISSUE, e.type);
-        }
-    }
-
-    @Test
-    public void givenMostRunsFactSheet_ButWithFileWithIncorrectHeaders_ShouldThrowException() {
-        try {
-            IplAnalyser iplAnalyser = new IplAnalyser();
-            iplAnalyser.LoadFactSheetCsv(IplAnalyser.playerTypes.BATSMAN, INCORRECT_HEADERS_RUNS_FACTSHEET);
-        } catch (IplAnalyserException e) {
-            Assert.assertEquals(IplAnalyserException.ExceptionType.HEADER_CAPTURING_ISSUE, e.type);
-        }
-    }
-
-    @Test
-    public void givenMostRunsFactSheet_ButWithFileWithoutReadWritePermission_ShouldThrowException() {
-        try {
-            IplAnalyser iplAnalyser = new IplAnalyser();
-            iplAnalyser.LoadFactSheetCsv(IplAnalyser.playerTypes.BATSMAN, IOISSUE_RUNS_FACTSHEET);
-        } catch (IplAnalyserException e) {
-            Assert.assertEquals(IplAnalyserException.ExceptionType.CSV_FILE_PROBLEM, e.type);
         }
     }
 
