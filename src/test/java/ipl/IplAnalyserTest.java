@@ -360,7 +360,7 @@ public class IplAnalyserTest {
             iplAnalyser.LoadFactSheetCsv(IplAnalyser.playerTypes.MERGE,RUNS_FACTSHEET,WICKETS_FACTSHEET);
             String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.BATTING_AVERAGE_WITH_BLOWING_AVERAGE);
             IplDao[] iplCSV = new Gson().fromJson(sortedIplData, IplDao[].class);
-            Assert.assertEquals("MS Dhoni", iplCSV[iplCSV.length - 1].playerName);
+            Assert.assertEquals("David Miller", iplCSV[iplCSV.length - 1].playerName);
         } catch (IplAnalyserException e) {
         }
     }

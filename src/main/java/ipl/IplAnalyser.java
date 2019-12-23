@@ -1,6 +1,7 @@
 package ipl;
 
 import com.google.gson.Gson;
+import iplcomprator.BattingBowlingAverageComparator;
 import iplcomprator.MaximumSixsAndFoursComparator;
 import iplcomprator.MinimumBallsComparator;
 
@@ -36,7 +37,7 @@ public class IplAnalyser {
         featureComparator.put(FeatureEnum.STRIKING_RATE_WITH_MAX_FOUR_AND_FIVE_WICKETS,strikingRateComparator.thenComparing(maximumFoursAndFiveWicketsComparator));
         featureComparator.put(FeatureEnum.BOWLING_AVERAGE_WITH_STRIKING_RATE,bowlingAverageComparator.thenComparing(strikingRateComparator));
         featureComparator.put(FeatureEnum.WICKETS_WITH_BOWLING,maximumFiveWicketsComparator.thenComparing(bowlingAverageComparator));
-        featureComparator.put(FeatureEnum.BATTING_AVERAGE_WITH_BLOWING_AVERAGE,battingAverageComparator.thenComparing(bowlingAverageComparator));
+        featureComparator.put(FeatureEnum.BATTING_AVERAGE_WITH_BLOWING_AVERAGE,new BattingBowlingAverageComparator());
         Comparator<IplDao> maximumRunsComparator=Comparator.comparing(ipl -> ipl.totalRuns);
         Comparator<IplDao> maximumWicketsComparator=Comparator.comparing(ipl -> ipl.wickets);
         featureComparator.put(FeatureEnum.RUNS_WITH_WICKETS,maximumWicketsComparator.thenComparing(maximumRunsComparator));
