@@ -12,7 +12,7 @@ public class IplAnalyser {
     Map<String, IplDao> iplMap = null;
     Map<FeatureEnum, Comparator<IplDao>> featureComparator = null;
 
-    enum playerTypes {WICKETS, RUNS,MERGE};
+    enum playerTypes {BOWLER, BATSMAN,MERGE};
 
     public IplAnalyser() {
         this.iplMap = new HashMap<>();
@@ -37,6 +37,9 @@ public class IplAnalyser {
         featureComparator.put(FeatureEnum.BOWLING_AVERAGE_WITH_STRIKING_RATE,bowlingAverageComparator.thenComparing(strikingRateComparator));
         featureComparator.put(FeatureEnum.WICKETS_WITH_BOWLING,maximumFiveWicketsComparator.thenComparing(bowlingAverageComparator));
         featureComparator.put(FeatureEnum.BATTING_AVERAGE_WITH_BLOWING_AVERAGE,battingAverageComparator.thenComparing(bowlingAverageComparator));
+        Comparator<IplDao> maximumRunsComparator=Comparator.comparing(ipl -> ipl.totalRuns);
+        Comparator<IplDao> maximumWicketsComparator=Comparator.comparing(ipl -> ipl.wickets);
+        featureComparator.put(FeatureEnum.RUNS_WITH_WICKETS,maximumWicketsComparator.thenComparing(maximumRunsComparator));
     }
 
     public int LoadFactSheetCsv(playerTypes playerType,String... csvFilePath) throws IplAnalyserException {

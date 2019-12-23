@@ -24,6 +24,4 @@ public class IplBowlerCSV {
 
     public IplBowlerCSV() {
     }
-
-
 }

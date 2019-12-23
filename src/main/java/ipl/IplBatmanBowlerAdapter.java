@@ -11,6 +11,10 @@ public class IplBatmanBowlerAdapter extends IplAdapter {
         iplBowlerDataMap.values().stream().
                 filter(iplData -> iplBatsmanDataMap.get(iplData.playerName) != null)
                 .forEach(iplData->iplBatsmanDataMap.get(iplData.playerName).bowlingAverage=iplData.bowlingAverage);
+        iplBowlerDataMap.values().stream().
+                filter(iplData -> iplBatsmanDataMap.get(iplData.playerName) != null)
+                .forEach(iplData->iplBatsmanDataMap.get(iplData.playerName).wickets=iplData.wickets);
+
         return iplBatsmanDataMap;
     }
 }
