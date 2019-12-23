@@ -354,7 +354,7 @@ public class IplAnalyserTest {
     }
 
     @Test
-    public void givenFactSheetOFMostRunsAndFactSheetOFMostWickets_WhenMerged_ShouldReturnAllFields() {
+    public void givenFactSheetOFMostRunsAndFactSheetOFMostWickets_WhenMergedAndSortedOnBestBattingAverageAndBowlingAverage_ShouldReturnAllFields() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
             iplAnalyser.LoadFactSheetCsv(IplAnalyser.playerTypes.MERGE,RUNS_FACTSHEET,WICKETS_FACTSHEET);
