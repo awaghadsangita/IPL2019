@@ -2,7 +2,7 @@ package ipl;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class IplBatsManCSV {
+public class IplBatsmanCSV {
     @CsvBindByName(column = "PLAYER", required = true)
     public String playerName;
     @CsvBindByName(column = "Mat")
@@ -12,7 +12,7 @@ public class IplBatsManCSV {
     @CsvBindByName(column = "Runs")
     public String totalRuns;
     @CsvBindByName(column = "Avg")
-    public String average;
+    public String batingAverage;
     @CsvBindByName(column = "100")
     public String century;
     @CsvBindByName(column = "50")
@@ -22,9 +22,8 @@ public class IplBatsManCSV {
     @CsvBindByName(column = "6s")
     public String sixes;
 
-    public IplBatsManCSV() {
+    public IplBatsmanCSV() {
     }
 
-    public IplBatsManCSV(IplDao iplDAO) {
-    }
+
 }

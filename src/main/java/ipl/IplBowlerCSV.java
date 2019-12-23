@@ -14,7 +14,7 @@ public class IplBowlerCSV {
     @CsvBindByName(column = "Wkts")
     public String wickets;
     @CsvBindByName(column = "Avg")
-    public String average;
+    public String bowlerAverage;
     @CsvBindByName(column = "Econ")
     public String economy;
     @CsvBindByName(column = "4w")
@@ -25,6 +25,5 @@ public class IplBowlerCSV {
     public IplBowlerCSV() {
     }
 
-    public IplBowlerCSV(IplDao iplDAO) {
-    }
+
 }

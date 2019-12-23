@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.stream.StreamSupport;
 
 public abstract class IplAdapter {
-    public abstract Map<String, IplDao> loadIplCsvData(String iplCsvFile) throws IplAnalyserException;
+    public abstract Map<String, IplDao> loadIplCsvData(String... iplCsvFile) throws IplAnalyserException;
 
     public <E> Map<String, IplDao> loadIplCsvData(Class<E> iplCSVClass, String csvFilePath) throws IplAnalyserException {
         Map<String, IplDao> iplMap = new HashMap<>();
@@ -22,9 +22,9 @@ public abstract class IplAdapter {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             Iterator<E> csvFileIterator = csvBuilder.getCSVFileIterator(reader, iplCSVClass);
             Iterable<E> csvIterable = () -> csvFileIterator;
-            if (iplCSVClass.getName().equals("ipl.IplBatsManCSV")) {
+            if (iplCSVClass.getName().equals("ipl.IplBatsmanCSV")) {
                 StreamSupport.stream(csvIterable.spliterator(), false)
-                        .map(IplBatsManCSV.class::cast)
+                        .map(IplBatsmanCSV.class::cast)
                         .forEach(iplMostRunsCSV -> iplMap.put(iplMostRunsCSV.playerName, new IplDao(iplMostRunsCSV)));
             } else if (iplCSVClass.getName().equals("ipl.IplBowlerCSV")) {
                 StreamSupport.stream(csvIterable.spliterator(), false)

@@ -4,7 +4,8 @@ public class IplDao {
 
     public String playerName;
     public int match;
-    public double average;
+    public double battingAverage;
+    public double bowlingAverage;
     public double strikingRate;
     public int totalRuns;
     public int wickets;
@@ -16,14 +17,14 @@ public class IplDao {
     public int fiveWickets;
     public double economy;
 
-    public IplDao(IplBatsManCSV iplMostRunsCSV) {
+    public IplDao(IplBatsmanCSV iplMostRunsCSV) {
         this.playerName = iplMostRunsCSV.playerName;
         this.match = Integer.parseInt(String.valueOf(iplMostRunsCSV.match));
-        if (iplMostRunsCSV.average.contains("-")) {
-            this.average = 0;
+        if (iplMostRunsCSV.batingAverage.contains("-")) {
+            this.battingAverage = 0;
         }
-        if (!iplMostRunsCSV.average.contains("-")) {
-            this.average = Double.parseDouble(iplMostRunsCSV.average);
+        if (!iplMostRunsCSV.batingAverage.contains("-")) {
+            this.battingAverage = Double.parseDouble(iplMostRunsCSV.batingAverage);
         }
         this.strikingRate = Double.parseDouble(iplMostRunsCSV.strikingRate);
         this.totalRuns=Integer.parseInt(String.valueOf(iplMostRunsCSV.totalRuns));
@@ -35,11 +36,11 @@ public class IplDao {
     public IplDao(IplBowlerCSV iplBowlerCSVData) {
         this.playerName = iplBowlerCSVData.playerName;
         this.match = Integer.parseInt(String.valueOf(iplBowlerCSVData.match));
-        if (iplBowlerCSVData.average.contains("-")) {
-            this.average = 0;
+        if (iplBowlerCSVData.bowlerAverage.contains("-")) {
+            this.bowlingAverage = 0;
         }
-        if (!iplBowlerCSVData.average.contains("-")) {
-            this.average = Double.parseDouble(iplBowlerCSVData.average);
+        if (!iplBowlerCSVData.bowlerAverage.contains("-")) {
+            this.bowlingAverage = Double.parseDouble(iplBowlerCSVData.bowlerAverage);
         }
         this.wickets=Integer.parseInt(String.valueOf(iplBowlerCSVData.wickets));
         if (iplBowlerCSVData.strikingRate.contains("-")) {

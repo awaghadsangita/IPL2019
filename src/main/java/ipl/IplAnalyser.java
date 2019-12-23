@@ -12,33 +12,34 @@ public class IplAnalyser {
     Map<String, IplDao> iplMap = null;
     Map<FeatureEnum, Comparator<IplDao>> featureComparator = null;
 
-    enum playerTypes {WICKETS, RUNS};
+    enum playerTypes {WICKETS, RUNS,MERGE};
 
     public IplAnalyser() {
         this.iplMap = new HashMap<>();
         this.featureComparator = new HashMap<>();
-        featureComparator.put(FeatureEnum.AVERAGE, Comparator.comparing(ipl -> ipl.average));
+        Comparator<IplDao> battingAverageComparator = Comparator.comparing(ipl -> ipl.battingAverage);
+        Comparator<IplDao> bowlingAverageComparator = Comparator.comparing(ipl -> ipl.bowlingAverage);
+        featureComparator.put(FeatureEnum.BATTING_AVERAGE,battingAverageComparator);
         featureComparator.put(FeatureEnum.STRIKING_RATES, Comparator.comparing(ipl -> ipl.strikingRate));
         Comparator<IplDao> strikingRateComparator = Comparator.comparing(ipl -> ipl.strikingRate);
         Comparator<IplDao> maximumSixesAndFoursComparator = (new MaximumSixsAndFoursComparator().thenComparing(new MinimumBallsComparator()));
         Comparator<IplDao> strikingRateWithMaxSixesAndFoursComparator = maximumSixesAndFoursComparator.thenComparing(strikingRateComparator);
-        Comparator<IplDao> averageComparator = Comparator.comparing(ipl -> ipl.average);
-        Comparator<IplDao> averageWithStrikingRateComparator = averageComparator.thenComparing(strikingRateComparator);
+        Comparator<IplDao> averageWithStrikingRateComparator = battingAverageComparator.thenComparing(strikingRateComparator);
         Comparator<IplDao> maximumFourWicketsComparator=Comparator.comparing(ipl -> ipl.fourWickets);
         Comparator<IplDao> maximumFiveWicketsComparator=Comparator.comparing(ipl -> ipl.fiveWickets);
-        Comparator<IplDao> maximumWicketsComparator=Comparator.comparing(ipl->ipl.wickets);
         Comparator<IplDao> maximumFoursAndFiveWicketsComparator = maximumFiveWicketsComparator.thenComparing(maximumFourWicketsComparator);
         featureComparator.put(FeatureEnum.STRIKING_RATE_WTIH_MAX_SIXES_FOURS, strikingRateWithMaxSixesAndFoursComparator);
         featureComparator.put(FeatureEnum.MAX_SIXES_AND_FOURS, maximumSixesAndFoursComparator);
         featureComparator.put(FeatureEnum.BEST_AVERAGE_WITH_STRIKING_RATE, averageWithStrikingRateComparator);
-        featureComparator.put(FeatureEnum.MAX_RUNS_WITH_BEST_AVERAGE, averageComparator.thenComparing(ipl -> ipl.totalRuns));
+        featureComparator.put(FeatureEnum.MAX_RUNS_WITH_BEST_AVERAGE, bowlingAverageComparator.thenComparing(ipl -> ipl.totalRuns));
         featureComparator.put(FeatureEnum.ECONOMY,Comparator.comparing(ipl-> ipl.economy));
         featureComparator.put(FeatureEnum.STRIKING_RATE_WITH_MAX_FOUR_AND_FIVE_WICKETS,strikingRateComparator.thenComparing(maximumFoursAndFiveWicketsComparator));
-        featureComparator.put(FeatureEnum.BOWLING_AVERAGE_WITH_STRIKING_RATE,averageComparator.thenComparing(strikingRateComparator));
-        featureComparator.put(FeatureEnum.WICKETS_WITH_BOWLING,maximumFiveWicketsComparator.thenComparing(averageComparator));
+        featureComparator.put(FeatureEnum.BOWLING_AVERAGE_WITH_STRIKING_RATE,bowlingAverageComparator.thenComparing(strikingRateComparator));
+        featureComparator.put(FeatureEnum.WICKETS_WITH_BOWLING,maximumFiveWicketsComparator.thenComparing(bowlingAverageComparator));
+        featureComparator.put(FeatureEnum.BATTING_AVERAGE_WITH_BLOWING_AVERAGE,battingAverageComparator.thenComparing(bowlingAverageComparator));
     }
 
-    public int LoadFactSheetCsv(String csvFilePath, playerTypes playerType) throws IplAnalyserException {
+    public int LoadFactSheetCsv(playerTypes playerType,String... csvFilePath) throws IplAnalyserException {
         IplAdapter iplAdapter = IplAdapterFactory.getIplObject(playerType);
         this.iplMap=iplAdapter.loadIplCsvData(csvFilePath);
         return iplMap.size();

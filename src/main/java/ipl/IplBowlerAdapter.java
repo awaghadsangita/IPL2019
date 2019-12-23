@@ -4,8 +4,8 @@ import java.util.Map;
 
 public class IplBowlerAdapter extends IplAdapter {
     @Override
-    public Map<String, IplDao> loadIplCsvData(String iplCsvFile) throws IplAnalyserException {
-        Map<String, IplDao> iplCsvData = super.loadIplCsvData(IplBowlerCSV.class, iplCsvFile);
+    public Map<String, IplDao> loadIplCsvData(String... iplCsvFile) throws IplAnalyserException {
+        Map<String, IplDao> iplCsvData = super.loadIplCsvData(IplBowlerCSV.class, iplCsvFile[0]);
         return iplCsvData;
     }
 }
