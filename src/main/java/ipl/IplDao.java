@@ -27,12 +27,13 @@ public class IplDao {
             this.battingAverage = Double.parseDouble(iplMostRunsCSV.batingAverage);
         }
         this.strikingRate = Double.parseDouble(iplMostRunsCSV.strikingRate);
-        this.totalRuns=Integer.parseInt(String.valueOf(iplMostRunsCSV.totalRuns));
+        this.totalRuns = Integer.parseInt(String.valueOf(iplMostRunsCSV.totalRuns));
         this.century = Integer.parseInt(String.valueOf(iplMostRunsCSV.halfCentury));
         this.halfCentury = Integer.parseInt(String.valueOf(iplMostRunsCSV.halfCentury));
         this.sixes = Integer.parseInt(String.valueOf(iplMostRunsCSV.sixes));
         this.fours = Integer.parseInt(String.valueOf(iplMostRunsCSV.fours));
     }
+
     public IplDao(IplBowlerCSV iplBowlerCSVData) {
         this.playerName = iplBowlerCSVData.playerName;
         this.match = Integer.parseInt(String.valueOf(iplBowlerCSVData.match));
@@ -42,15 +43,15 @@ public class IplDao {
         if (!iplBowlerCSVData.bowlerAverage.contains("-")) {
             this.bowlingAverage = Double.parseDouble(iplBowlerCSVData.bowlerAverage);
         }
-        this.wickets=Integer.parseInt(String.valueOf(iplBowlerCSVData.wickets));
+        this.wickets = Integer.parseInt(String.valueOf(iplBowlerCSVData.wickets));
         if (iplBowlerCSVData.strikingRate.contains("-")) {
             this.strikingRate = 0;
         }
         if (!iplBowlerCSVData.strikingRate.contains("-")) {
             this.strikingRate = Double.parseDouble(iplBowlerCSVData.strikingRate);
         }
-        this.economy=Double.parseDouble(iplBowlerCSVData.economy);
-        this.totalRuns=Integer.parseInt(String.valueOf(iplBowlerCSVData.totalRuns));
+        this.economy = Double.parseDouble(iplBowlerCSVData.economy);
+        this.totalRuns = Integer.parseInt(String.valueOf(iplBowlerCSVData.totalRuns));
         this.fiveWickets = Integer.parseInt(String.valueOf(iplBowlerCSVData.fiveWickets));
         this.fourWickets = Integer.parseInt(String.valueOf(iplBowlerCSVData.fourWickets));
     }

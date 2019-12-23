@@ -8,8 +8,9 @@ public class IplAdapterFactory extends IplAnalyser {
         if (playerType.equals(IplAnalyser.playerTypes.BOWLER)) {
             return new IplBowlerAdapter();
         }
-        if(playerType.equals(playerTypes.MERGE))
+        if(playerType.equals(playerTypes.MERGE)) {
             return new IplBatmanBowlerAdapter();
+        }
         throw new IplAnalyserException("Unknown player type", IplAnalyserException.ExceptionType.INCORRECT_PLAYER_TYPE);
     }
 }
