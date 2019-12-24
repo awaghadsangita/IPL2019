@@ -229,4 +229,14 @@ public class IplAnalyserWithMokitoTest {
         }
     }
 
+    @Test
+    public void givenFactSheetOFMostWickets_SortedOnBowlingAverageWithStrikingRate_ShouldReturnPlayerWithHighestSortedFeature() {
+        try {
+            iplBowlerAnalyser.loadFactSheetCsv(IplAnalyser.playerTypes.BOWLER, WICKETS_FACTSHEET);
+            String sortedIplData = iplBowlerAnalyser.getIplSortedData(FeatureEnum.BOWLING_AVERAGE_WITH_STRIKING_RATE);
+            IplBatsmanCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsmanCSV[].class);
+            Assert.assertEquals("Krishnappa Gowtham", iplCSV[iplCSV.length - 1].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
 }
