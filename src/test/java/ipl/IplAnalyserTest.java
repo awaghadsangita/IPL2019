@@ -190,7 +190,7 @@ public class IplAnalyserTest {
     }
 
     @Test
-    public void givenFactSheetOFMostWickets_SortedOnBowlingAverage_ShouldReturnPlayerWithHighestBowlingAverageW() {
+    public void givenFactSheetOFMostWickets_SortedOnBowlingAverage_ShouldReturnPlayerWithHighestBowlingAverage() {
         try {
             IplAnalyser iplAnalyser = new IplAnalyser();
             iplAnalyser.setIplAdapter(new IplBowlerAdapter());
@@ -199,7 +199,6 @@ public class IplAnalyserTest {
             IplBatsmanCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsmanCSV[].class);
             Assert.assertEquals("Krishnappa Gowtham", iplCSV[iplCSV.length - 1].playerName);
         } catch (IplAnalyserException e) {
-
         }
     }
 
