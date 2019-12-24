@@ -19,10 +19,13 @@ import static org.mockito.Mockito.when;
 
 public class IplAnalyserWithMokitoTest {
     private static final String RUNS_FACTSHEET = "/home/admin1/IdeaProjects/IPL2019/src/test/resources/IPL2019FactsheetMostRuns.csv";
+    private static final String WICKETS_FACTSHEET = "/home/admin1/IdeaProjects/IPL2019/src/test/resources/IPL2019FactsheetMostWkts.csv";
     IplAnalyser iplBatsmanAnalyser;
+    IplAnalyser iplBowlerAnalyser;
 
     @Mock
     IplBatsmanAdapter iplBatsmanObject;
+    IplBowlerAdapter iplBowlerObject;
 
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
@@ -45,6 +48,20 @@ public class IplAnalyserWithMokitoTest {
             when(iplBatsmanObject.loadIplCsvData(RUNS_FACTSHEET)).thenReturn(sampleBatsmanMap);
             iplBatsmanAnalyser = new IplAnalyser();
             iplBatsmanAnalyser.setIplAdapter(iplBatsmanObject);
+
+            IplDao daoBowlerObjectOne = new IplDao(new IplBowlerCSV("Andre Russell", "14", "16.45","287","11","26.09","9.51","0","0"));
+            IplDao daoBolwerObjectTwo = new IplDao(new IplBowlerCSV("Ms Dhoni", "17", "14.84", "431", "26", "16.57", "6.69", "2", "0"));
+            IplDao daoBowlerObjectThree = new IplDao(new IplBowlerCSV("David Miller", "10", "0", "213", "13", "164", "0", "1", "19"));
+            IplDao daoBowlerObjectFour = new IplDao(new IplBowlerCSV("Krishnappa Gowtham", "7", "120", "510", "1", "166", "8.3", "0", "0"));
+            Map<String, IplDao> sampleBowlerMap = new HashMap<>();
+            sampleBowlerMap.put("Andre Russell",daoBowlerObjectOne);
+            sampleBowlerMap.put("Ms Dhoni",daoBolwerObjectTwo);
+            sampleBowlerMap.put("David Miller",daoBowlerObjectThree);
+            sampleBowlerMap.put("Krishnappa Gowtham",daoBowlerObjectFour);
+            iplBowlerObject=mock(IplBowlerAdapter.class);
+            when(iplBowlerObject.loadIplCsvData(WICKETS_FACTSHEET)).thenReturn(sampleBowlerMap);
+            iplBowlerAnalyser=new IplAnalyser();
+            iplBowlerAnalyser.setIplAdapter(iplBowlerObject);
         } catch (IplAnalyserException e) {
         }
     }
@@ -156,5 +173,40 @@ public class IplAnalyserWithMokitoTest {
         } catch (IplAnalyserException e) {
         }
     }
+
+    @Test
+    public void givenFactSheetOFMostWickets_SortedOnBowlingAverage_ShouldReturnPlayerWithHighestBowlingAverage() {
+        try {
+            iplBowlerAnalyser.loadFactSheetCsv(IplAnalyser.playerTypes.BOWLER, WICKETS_FACTSHEET);
+            String sortedIplData = iplBowlerAnalyser.getIplSortedData(FeatureEnum.MAX_RUNS_WITH_BEST_AVERAGE);
+            IplBatsmanCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsmanCSV[].class);
+            Assert.assertEquals("Krishnappa Gowtham", iplCSV[iplCSV.length - 1].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
+
+    @Test
+    public void givenFactSheetOFMostWickets_SortedOnBowlerStrikingRates_ShouldReturnPlayerWithHighestStrikingRates() {
+        try {
+            iplBowlerAnalyser.loadFactSheetCsv(IplAnalyser.playerTypes.BOWLER, WICKETS_FACTSHEET);
+            String sortedIplData = iplBowlerAnalyser.getIplSortedData(FeatureEnum.STRIKING_RATES);
+            IplBatsmanCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsmanCSV[].class);
+            Assert.assertEquals("Krishnappa Gowtham", iplCSV[iplCSV.length - 1].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
+
+    @Test
+    public void givenFactSheetOFMostWickets_SortedOnStrikingRates_ShouldReturnPlayerWithHighestStrikingRates() {
+        try {
+            iplBowlerAnalyser.loadFactSheetCsv(IplAnalyser.playerTypes.BOWLER, WICKETS_FACTSHEET);
+            String sortedIplData = iplBowlerAnalyser.getIplSortedData(FeatureEnum.STRIKING_RATES);
+            IplBatsmanCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsmanCSV[].class);
+            Assert.assertEquals("Krishnappa Gowtham", iplCSV[iplCSV.length - 1].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
+
+
 
 }
