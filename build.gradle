@@ -14,4 +14,13 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile "com.opencsv:opencsv:4.0"
     compile(files("/home/admin1/IdeaProjects/IPL2019/out/artifacts/CensusAnalyser_jar/CensusAnalyser.jar"))
+    testImplementation 'org.mockito:mockito-core:3.+'
+    // https://mvnrepository.com/artifact/org.powermock/powermock-module-junit4-rule
+// https://mvnrepository.com/artifact/org.powermock/powermock-module-junit4-rule
+    testCompile group: 'org.powermock', name: 'powermock-module-junit4-rule', version: '2.0.0'
+
+
+
+
+
 }

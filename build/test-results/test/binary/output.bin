@@ -1,4 +1,54 @@
-:java.lang.NumberFormatException: For input string: "null"
-8java.lang.RuntimeException: Error capturing CSV header!
-8java.lang.RuntimeException: Error capturing CSV header!
-;java.lang.RuntimeException: java.lang.NullPointerException
+˜[MockitoHint] IplAnalyserWithMokitoTest.givenFactSheetOFMostWickets_SortedOnEconomy_ShouldReturnPlayerWithHighestEconomy (see javadoc for MockitoHint):
+r[MockitoHint] 1. Unused -> at ipl.IplAnalyserWithMokitoTest.runOnceBeforeClass(IplAnalyserWithMokitoTest.java:48)
+
+¤[MockitoHint] IplAnalyserWithMokitoTest.givenFactSheetOFMostWickets_SortedOnStrikingRates_ShouldReturnPlayerWithHighestStrikingRates (see javadoc for MockitoHint):
+r[MockitoHint] 1. Unused -> at ipl.IplAnalyserWithMokitoTest.runOnceBeforeClass(IplAnalyserWithMokitoTest.java:48)
+
+ª[MockitoHint] IplAnalyserWithMokitoTest.givenFactSheetOFMostWickets_SortedOnBowlerStrikingRates_ShouldReturnPlayerWithHighestStrikingRates (see javadoc for MockitoHint):
+r[MockitoHint] 1. Unused -> at ipl.IplAnalyserWithMokitoTest.runOnceBeforeClass(IplAnalyserWithMokitoTest.java:48)
+
+¦[MockitoHint] IplAnalyserWithMokitoTest.givenFactSheetOFMostWickets_SortedOnBowlingAverage_ShouldReturnPlayerWithHighestBowlingAverage (see javadoc for MockitoHint):
+r[MockitoHint] 1. Unused -> at ipl.IplAnalyserWithMokitoTest.runOnceBeforeClass(IplAnalyserWithMokitoTest.java:48)
+
+»[MockitoHint] IplAnalyserWithMokitoTest.givenFactSheetOFMostRuns_SortedOnAverageWithMaximumRunsWithBestAverage_ShouldReturnPlayerWithHighestAverageWithRuns (see javadoc for MockitoHint):
+r[MockitoHint] 1. Unused -> at ipl.IplAnalyserWithMokitoTest.runOnceBeforeClass(IplAnalyserWithMokitoTest.java:61)
+
+µ[MockitoHint] IplAnalyserWithMokitoTest.givenFactSheetOFMostRuns_SortedOnAverageWithStrikingRate_ShouldReturnPlayerWithHighestAverageWithStrikingRate (see javadoc for MockitoHint):
+r[MockitoHint] 1. Unused -> at ipl.IplAnalyserWithMokitoTest.runOnceBeforeClass(IplAnalyserWithMokitoTest.java:61)
+
+§[MockitoHint] IplAnalyserWithMokitoTest.givenFactSheetOFMostRuns_WithSortedOnBattingAverage_ShouldReturnPlayerWithHighestBattingAverage (see javadoc for MockitoHint):
+r[MockitoHint] 1. Unused -> at ipl.IplAnalyserWithMokitoTest.runOnceBeforeClass(IplAnalyserWithMokitoTest.java:61)
+
+	°[MockitoHint] IplAnalyserWithMokitoTest.givenFactSheetOFMostWickets_SortedOnWicketsWithBowlingAverage_ShouldReturnPlayerWithHighestSortedFeature (see javadoc for MockitoHint):
+	r[MockitoHint] 1. Unused -> at ipl.IplAnalyserWithMokitoTest.runOnceBeforeClass(IplAnalyserWithMokitoTest.java:48)
+	
+
+ª[MockitoHint] IplAnalyserWithMokitoTest.givenFactSheetOFMostRuns_WithSortedOnMaximumStrikingRate_ShouldReturnPlayerWithHighestStrikingRate (see javadoc for MockitoHint):
+
+r[MockitoHint] 1. Unused -> at ipl.IplAnalyserWithMokitoTest.runOnceBeforeClass(IplAnalyserWithMokitoTest.java:61)
+
+
+¿[MockitoHint] IplAnalyserWithMokitoTest.givenFactSheetOFMostWickets_SortedOnBestStrikingRateWithFoursAndFivesWickets_ShouldReturnPlayerWithHighestSortedFeature (see javadoc for MockitoHint):
+r[MockitoHint] 1. Unused -> at ipl.IplAnalyserWithMokitoTest.runOnceBeforeClass(IplAnalyserWithMokitoTest.java:48)
+
+¤[MockitoHint] IplAnalyserWithMokitoTest.givenFactSheetOFMostRuns_WithSortedOnStrikingRates_ShouldReturnPlayerWithHighestStrikingRate (see javadoc for MockitoHint):
+r[MockitoHint] 1. Unused -> at ipl.IplAnalyserWithMokitoTest.runOnceBeforeClass(IplAnalyserWithMokitoTest.java:61)
+
+¥[MockitoHint] IplAnalyserWithMokitoTest.givenFactSheetOFMostRuns_WithSortedOnMaximumSixesFours_ShouldReturnPlayerWithLowestSixesFours (see javadoc for MockitoHint):
+r[MockitoHint] 1. Unused -> at ipl.IplAnalyserWithMokitoTest.runOnceBeforeClass(IplAnalyserWithMokitoTest.java:61)
+
+„[MockitoHint] IplAnalyserWithMokitoTest.givenMostRunsFactSheet_ReturnExactNumberOfPlayersOfSampleMap (see javadoc for MockitoHint):
+r[MockitoHint] 1. Unused -> at ipl.IplAnalyserWithMokitoTest.runOnceBeforeClass(IplAnalyserWithMokitoTest.java:61)
+
+¦[MockitoHint] IplAnalyserWithMokitoTest.givenFactSheetOFMostRuns_WithSortedOnBattingAverage_ShouldReturnPlayerWithLowestBattingAverage (see javadoc for MockitoHint):
+r[MockitoHint] 1. Unused -> at ipl.IplAnalyserWithMokitoTest.runOnceBeforeClass(IplAnalyserWithMokitoTest.java:61)
+
+¦[MockitoHint] IplAnalyserWithMokitoTest.givenFactSheetOFMostRuns_WithSortedOnMaximumSixesFours_ShouldReturnPlayerWithHighestSixesFours (see javadoc for MockitoHint):
+r[MockitoHint] 1. Unused -> at ipl.IplAnalyserWithMokitoTest.runOnceBeforeClass(IplAnalyserWithMokitoTest.java:61)
+
+£[MockitoHint] IplAnalyserWithMokitoTest.givenFactSheetOFMostRuns_WithSortedOnStrikingRates_ShouldReturnPlayerWithLowestStrikingRate (see javadoc for MockitoHint):
+r[MockitoHint] 1. Unused -> at ipl.IplAnalyserWithMokitoTest.runOnceBeforeClass(IplAnalyserWithMokitoTest.java:61)
+
+µ[MockitoHint] IplAnalyserWithMokitoTest.givenFactSheetOFMostWickets_SortedOnBowlingAverageWithStrikingRate_ShouldReturnPlayerWithHighestSortedFeature (see javadoc for MockitoHint):
+r[MockitoHint] 1. Unused -> at ipl.IplAnalyserWithMokitoTest.runOnceBeforeClass(IplAnalyserWithMokitoTest.java:48)
+
