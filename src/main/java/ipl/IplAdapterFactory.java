@@ -1,7 +1,7 @@
 package ipl;
 
 public class IplAdapterFactory extends IplAnalyser {
-    protected static IplAdapter getIplObject(IplAnalyser.playerTypes playerType) throws IplAnalyserException {
+    public static IplAdapter getIplObject(IplAnalyser.playerTypes playerType) throws IplAnalyserException {
         if (playerType.equals(IplAnalyser.playerTypes.BATSMAN)) {
             return new IplBatsmanAdapter();
         }
