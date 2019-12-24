@@ -1,6 +1,7 @@
 package ipl;
 
 
+import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -53,6 +54,17 @@ public class IplAnalyserWithMokitoTest {
         try {
             long numberOfPlayers = iplBatsmanAnalyser.loadFactSheetCsv(IplAnalyser.playerTypes.BATSMAN, RUNS_FACTSHEET);
             Assert.assertEquals(5, numberOfPlayers);
+        } catch (IplAnalyserException e) {
+        }
+    }
+
+    @Test
+    public void givenFactSheetOFMostRuns_WithSortedOnBattingAverage_ShouldReturnPlayerWithLowestBattingAverage() {
+        try {
+            iplBatsmanAnalyser.loadFactSheetCsv(IplAnalyser.playerTypes.BATSMAN, RUNS_FACTSHEET);
+            String sortedIplData = iplBatsmanAnalyser.getIplSortedData(FeatureEnum.BATTING_AVERAGE);
+            IplBatsmanCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsmanCSV[].class);
+            Assert.assertEquals("Ishant Sharma", iplCSV[0].playerName);
         } catch (IplAnalyserException e) {
         }
     }
