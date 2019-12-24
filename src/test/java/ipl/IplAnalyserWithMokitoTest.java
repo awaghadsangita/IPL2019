@@ -46,6 +46,7 @@ public class IplAnalyserWithMokitoTest {
             sampleBatsmanMap.put("Hardik Pandya", daoObjectFive);
             iplBatsmanObject = mock(IplBatsmanAdapter.class);
             when(iplBatsmanObject.loadIplCsvData(RUNS_FACTSHEET)).thenReturn(sampleBatsmanMap);
+
             iplBatsmanAnalyser = new IplAnalyser();
             iplBatsmanAnalyser.setIplAdapter(iplBatsmanObject);
             IplDao daoBowlerObjectOne = new IplDao(new IplBowlerCSV("Andre Russell", "14", "16.45", "287", "11", "26.09", "9.51", "0", "0"));
