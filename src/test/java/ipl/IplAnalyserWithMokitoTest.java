@@ -145,4 +145,16 @@ public class IplAnalyserWithMokitoTest {
         } catch (IplAnalyserException e) {
         }
     }
+
+    @Test
+    public void givenFactSheetOFMostRuns_SortedOnAverageWithMaximumRunsWithBestAverage_ShouldReturnPlayerWithHighestAverageWithRuns() {
+        try {
+            iplBatsmanAnalyser.loadFactSheetCsv(IplAnalyser.playerTypes.BOWLER, RUNS_FACTSHEET);
+            String sortedIplData = iplBatsmanAnalyser.getIplSortedData(FeatureEnum.MAX_RUNS_WITH_BEST_AVERAGE);
+            IplBatsmanCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsmanCSV[].class);
+            Assert.assertEquals("David Warner", iplCSV[iplCSV.length - 1].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
+
 }
