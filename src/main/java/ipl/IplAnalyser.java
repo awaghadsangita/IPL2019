@@ -15,7 +15,7 @@ public class IplAnalyser {
     Map<FeatureEnum, Comparator<IplDao>> featureComparator = null;
     private IplAdapter iplAdapter;
 
-    public void setActualObjectToMock(IplAdapter iplAdapter) {
+    public void setIplAdapter(IplAdapter iplAdapter) {
         this.iplAdapter = iplAdapter;
     }
 
