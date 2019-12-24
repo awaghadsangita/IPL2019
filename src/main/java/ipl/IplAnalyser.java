@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import iplcomprator.BattingBowlingAverageComparator;
 import iplcomprator.MaximumSixsAndFoursComparator;
 import iplcomprator.MinimumBallsComparator;
+import iplcomprator.RunsWicketsComparator;
 
 import java.util.*;
 
@@ -12,10 +13,13 @@ import static java.util.stream.Collectors.toCollection;
 public class IplAnalyser {
     Map<String, IplDao> iplMap = null;
     Map<FeatureEnum, Comparator<IplDao>> featureComparator = null;
+    private IplAdapter iplAdapter;
+
+    public void setActualObjectToMock(IplAdapter iplAdapter) {
+        this.iplAdapter = iplAdapter;
+    }
 
     enum playerTypes {BOWLER, BATSMAN, MERGE}
-
-    ;
 
     public IplAnalyser() {
         this.iplMap = new HashMap<>();
@@ -42,12 +46,11 @@ public class IplAnalyser {
         featureComparator.put(FeatureEnum.BATTING_AVERAGE_WITH_BLOWING_AVERAGE, battingAverageComparator.thenComparing(new BattingBowlingAverageComparator()));
         Comparator<IplDao> maximumRunsComparator = Comparator.comparing(ipl -> ipl.totalRuns);
         Comparator<IplDao> maximumWicketsComparator = Comparator.comparing(ipl -> ipl.wickets);
-        featureComparator.put(FeatureEnum.RUNS_WITH_WICKETS, maximumWicketsComparator.thenComparing(maximumRunsComparator));
+        featureComparator.put(FeatureEnum.RUNS_WITH_WICKETS, new RunsWicketsComparator());
     }
 
-    public int LoadFactSheetCsv(playerTypes playerType, String... csvFilePath) throws IplAnalyserException {
-        IplAdapter iplAdapter = IplAdapterFactory.getIplObject(playerType);
-        this.iplMap = iplAdapter.loadIplCsvData(csvFilePath);
+    public int loadFactSheetCsv(playerTypes playerType, String... csvFilePath) throws IplAnalyserException {
+        this.iplMap = this.iplAdapter.loadIplCsvData(csvFilePath);
         return iplMap.size();
     }
 

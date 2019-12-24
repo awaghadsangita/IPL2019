@@ -24,4 +24,16 @@ public class IplBatsmanCSV {
 
     public IplBatsmanCSV() {
     }
+
+    public IplBatsmanCSV(String playerName, String match, String strikingRate, String totalRuns, String batingAverage, String century, String halfCentury, String fours, String sixes) {
+        this.playerName = playerName;
+        this.match = match;
+        this.strikingRate = strikingRate;
+        this.totalRuns = totalRuns;
+        this.batingAverage = batingAverage;
+        this.century = century;
+        this.halfCentury = halfCentury;
+        this.fours = fours;
+        this.sixes = sixes;
+    }
 }
