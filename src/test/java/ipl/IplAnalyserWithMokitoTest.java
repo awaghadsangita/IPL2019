@@ -49,18 +49,18 @@ public class IplAnalyserWithMokitoTest {
             iplBatsmanAnalyser = new IplAnalyser();
             iplBatsmanAnalyser.setIplAdapter(iplBatsmanObject);
 
-            IplDao daoBowlerObjectOne = new IplDao(new IplBowlerCSV("Andre Russell", "14", "16.45","287","11","26.09","9.51","0","0"));
+            IplDao daoBowlerObjectOne = new IplDao(new IplBowlerCSV("Andre Russell", "14", "16.45", "287", "11", "26.09", "9.51", "0", "0"));
             IplDao daoBolwerObjectTwo = new IplDao(new IplBowlerCSV("Ms Dhoni", "17", "14.84", "431", "26", "16.57", "6.69", "2", "0"));
             IplDao daoBowlerObjectThree = new IplDao(new IplBowlerCSV("David Miller", "10", "0", "213", "13", "164", "0", "1", "19"));
             IplDao daoBowlerObjectFour = new IplDao(new IplBowlerCSV("Krishnappa Gowtham", "7", "120", "510", "1", "166", "8.3", "0", "0"));
             Map<String, IplDao> sampleBowlerMap = new HashMap<>();
-            sampleBowlerMap.put("Andre Russell",daoBowlerObjectOne);
-            sampleBowlerMap.put("Ms Dhoni",daoBolwerObjectTwo);
-            sampleBowlerMap.put("David Miller",daoBowlerObjectThree);
-            sampleBowlerMap.put("Krishnappa Gowtham",daoBowlerObjectFour);
-            iplBowlerObject=mock(IplBowlerAdapter.class);
+            sampleBowlerMap.put("Andre Russell", daoBowlerObjectOne);
+            sampleBowlerMap.put("Ms Dhoni", daoBolwerObjectTwo);
+            sampleBowlerMap.put("David Miller", daoBowlerObjectThree);
+            sampleBowlerMap.put("Krishnappa Gowtham", daoBowlerObjectFour);
+            iplBowlerObject = mock(IplBowlerAdapter.class);
             when(iplBowlerObject.loadIplCsvData(WICKETS_FACTSHEET)).thenReturn(sampleBowlerMap);
-            iplBowlerAnalyser=new IplAnalyser();
+            iplBowlerAnalyser = new IplAnalyser();
             iplBowlerAnalyser.setIplAdapter(iplBowlerObject);
         } catch (IplAnalyserException e) {
         }
@@ -207,6 +207,16 @@ public class IplAnalyserWithMokitoTest {
         }
     }
 
+    @Test
+    public void givenFactSheetOFMostWickets_SortedOnEconomy_ShouldReturnPlayerWithHighestEconomy() {
+        try {
+            iplBowlerAnalyser.loadFactSheetCsv(IplAnalyser.playerTypes.BOWLER, WICKETS_FACTSHEET);
+            String sortedIplData = iplBowlerAnalyser.getIplSortedData(FeatureEnum.ECONOMY);
+            IplBatsmanCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsmanCSV[].class);
+            Assert.assertEquals("Andre Russell", iplCSV[iplCSV.length - 1].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
 
 
 }
