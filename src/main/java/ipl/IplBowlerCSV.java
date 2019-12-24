@@ -24,4 +24,16 @@ public class IplBowlerCSV {
 
     public IplBowlerCSV() {
     }
+
+    public IplBowlerCSV(String playerName, String match, String strikingRate, String totalRuns, String wickets, String bowlerAverage, String economy, String fourWickets, String fiveWickets) {
+        this.playerName = playerName;
+        this.match = match;
+        this.strikingRate = strikingRate;
+        this.totalRuns = totalRuns;
+        this.wickets = wickets;
+        this.bowlerAverage = bowlerAverage;
+        this.economy = economy;
+        this.fourWickets = fourWickets;
+        this.fiveWickets = fiveWickets;
+    }
 }
