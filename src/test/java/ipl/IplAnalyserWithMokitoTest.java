@@ -101,5 +101,25 @@ public class IplAnalyserWithMokitoTest {
         } catch (IplAnalyserException e) {
         }
     }
+    @Test
+    public void givenFactSheetOFMostRuns_WithSortedOnMaximumSixesFours_ShouldReturnPlayerWithLowestSixesFours() {
+        try {
+            iplBatsmanAnalyser.loadFactSheetCsv(IplAnalyser.playerTypes.BATSMAN, RUNS_FACTSHEET);
+            String sortedIplData = iplBatsmanAnalyser.getIplSortedData(FeatureEnum.MAX_SIXES_AND_FOURS);
+            IplBatsmanCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsmanCSV[].class);
+            Assert.assertEquals("Ishant Sharma", iplCSV[0].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
 
+    @Test
+    public void givenFactSheetOFMostRuns_WithSortedOnMaximumSixesFours_ShouldReturnPlayerWithHighestSixesFours() {
+        try {
+            iplBatsmanAnalyser.loadFactSheetCsv(IplAnalyser.playerTypes.BATSMAN, RUNS_FACTSHEET);
+            String sortedIplData = iplBatsmanAnalyser.getIplSortedData(FeatureEnum.MAX_SIXES_AND_FOURS);
+            IplBatsmanCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsmanCSV[].class);
+            Assert.assertEquals("Andre Russell", iplCSV[iplCSV.length - 1].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
 }
