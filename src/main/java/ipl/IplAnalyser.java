@@ -56,7 +56,7 @@ public class IplAnalyser {
 
     public String getIplSortedData(FeatureEnum field) throws IplAnalyserException {
         if (iplMap == null || iplMap.size() == 0) {
-            throw new IplAnalyserException("no ipl data", IplAnalyserException.ExceptionType.NO_CENSUS_DATA);
+            throw new IplAnalyserException("no ipl data", IplAnalyserException.ExceptionType.NO_IPL_DATA);
         }
         ArrayList iplList = iplMap.values().stream()
                 .sorted(this.featureComparator.get(field))

@@ -358,4 +358,15 @@ public class IplAnalyserTest {
         } catch (IplAnalyserException e) {
         }
     }
+
+    @Test
+    public void givenFactSheetOFMostRunsAndFactSheetOFMostWickets_ButNotCalledLoadMethod_ShouldThrowException() {
+        try {
+            IplAnalyser iplAnalyser = new IplAnalyser();
+            iplAnalyser.setIplAdapter(new IplBatmanBowlerAdapter());
+            String sortedIplData = iplAnalyser.getIplSortedData(FeatureEnum.RUNS_WITH_WICKETS);
+        } catch (IplAnalyserException e) {
+            Assert.assertEquals(IplAnalyserException.ExceptionType.NO_IPL_DATA,e.type);
+        }
+    }
 }
