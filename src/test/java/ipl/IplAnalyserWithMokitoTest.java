@@ -48,7 +48,6 @@ public class IplAnalyserWithMokitoTest {
             when(iplBatsmanObject.loadIplCsvData(RUNS_FACTSHEET)).thenReturn(sampleBatsmanMap);
             iplBatsmanAnalyser = new IplAnalyser();
             iplBatsmanAnalyser.setIplAdapter(iplBatsmanObject);
-
             IplDao daoBowlerObjectOne = new IplDao(new IplBowlerCSV("Andre Russell", "14", "16.45", "287", "11", "26.09", "9.51", "0", "0"));
             IplDao daoBolwerObjectTwo = new IplDao(new IplBowlerCSV("Ms Dhoni", "17", "14.84", "431", "26", "16.57", "6.69", "2", "0"));
             IplDao daoBowlerObjectThree = new IplDao(new IplBowlerCSV("David Miller", "10", "0", "213", "13", "164", "0", "1", "19"));
@@ -250,4 +249,5 @@ public class IplAnalyserWithMokitoTest {
         } catch (IplAnalyserException e) {
         }
     }
+
 }
