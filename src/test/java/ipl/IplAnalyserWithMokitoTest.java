@@ -68,4 +68,15 @@ public class IplAnalyserWithMokitoTest {
         } catch (IplAnalyserException e) {
         }
     }
+
+    @Test
+    public void givenFactSheetOFMostRuns_WithSortedOnBattingAverage_ShouldReturnPlayerWithHighestBattingAverage() {
+        try {
+            iplBatsmanAnalyser.loadFactSheetCsv(IplAnalyser.playerTypes.BATSMAN, RUNS_FACTSHEET);
+            String sortedIplData = iplBatsmanAnalyser.getIplSortedData(FeatureEnum.BATTING_AVERAGE);
+            IplBatsmanCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsmanCSV[].class);
+            Assert.assertEquals("Ms Dhoni", iplCSV[iplCSV.length - 1].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
 }
