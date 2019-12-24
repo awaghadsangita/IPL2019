@@ -44,7 +44,7 @@ public class IplAnalyserWithMokitoTest {
             iplBatsmanObject = mock(IplBatsmanAdapter.class);
             when(iplBatsmanObject.loadIplCsvData(RUNS_FACTSHEET)).thenReturn(sampleBatsmanMap);
             iplBatsmanAnalyser = new IplAnalyser();
-            iplBatsmanAnalyser.setActualObjectToMock(iplBatsmanObject);
+            iplBatsmanAnalyser.setIplAdapter(iplBatsmanObject);
         } catch (IplAnalyserException e) {
         }
     }
@@ -117,6 +117,17 @@ public class IplAnalyserWithMokitoTest {
         try {
             iplBatsmanAnalyser.loadFactSheetCsv(IplAnalyser.playerTypes.BATSMAN, RUNS_FACTSHEET);
             String sortedIplData = iplBatsmanAnalyser.getIplSortedData(FeatureEnum.MAX_SIXES_AND_FOURS);
+            IplBatsmanCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsmanCSV[].class);
+            Assert.assertEquals("Andre Russell", iplCSV[iplCSV.length - 1].playerName);
+        } catch (IplAnalyserException e) {
+        }
+    }
+
+    @Test
+    public void givenFactSheetOFMostRuns_WithSortedOnMaximumStrikingRate_ShouldReturnPlayerWithHighestStrikingRate() {
+        try {
+            iplBatsmanAnalyser.loadFactSheetCsv(IplAnalyser.playerTypes.BATSMAN, RUNS_FACTSHEET);
+            String sortedIplData = iplBatsmanAnalyser.getIplSortedData(FeatureEnum.STRIKING_RATE_WTIH_MAX_SIXES_FOURS);
             IplBatsmanCSV[] iplCSV = new Gson().fromJson(sortedIplData, IplBatsmanCSV[].class);
             Assert.assertEquals("Andre Russell", iplCSV[iplCSV.length - 1].playerName);
         } catch (IplAnalyserException e) {
